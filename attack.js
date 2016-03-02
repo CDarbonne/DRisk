@@ -54,14 +54,17 @@ for(i = 0; i < attackDice.length; i++)
     {
         if(attackDice[i] > defendDice[j])
         {
+            //Console test output
             console.log(attackDice[i] + " beats " + defendDice[j]);
         }
         else if(attackDice[i] < defendDice[j])
         {
+            //Console test output
             console.log(attackDice[i] + " loses to " + defendDice[j]);
         }
         else if(attackDice[i] === defendDice[j])
         {
+            //Console test output
             console.log("Tie! Defenders win.");
         }
     }
