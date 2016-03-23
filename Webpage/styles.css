@@ -1,5 +1,7 @@
 
-
+#cssmenu {
+  z-index: 1000;
+}
 
 #cssmenu > ul {
   width: auto;
@@ -127,7 +129,7 @@
 }*/
 
 html { 
-  background: url(DRISK.jpg) no-repeat center center fixed; 
+  background: url(images/War.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

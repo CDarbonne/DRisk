@@ -6,6 +6,7 @@
         <title>amMap example</title>
 
         <link rel="stylesheet" href="ammap.css" type="text/css">
+        <link rel="stylesheet" href="../styles.css" type="text/css">
         <script src="ammap.js" type="text/javascript"></script>
         <!-- map file should be included after ammap.js -->
 		<script src="EasyMap.js" type="text/javascript"></script>
@@ -44,13 +45,13 @@
 			     * selectedColor indicates color of the clicked area.
 			     */
 			    map.areasSettings = {
-			        autoZoom: true,
+			        autoZoom: false,
 			        rollOverBrightness:10,
 			        selectedBrightness:20
 			    };
 
 			    // let's say we want a small map to be displayed, so let's create and add it to the map
-			    map.smallMap = new AmCharts.SmallMap();
+			    //map.smallMap = new AmCharts.SmallMap();
 
 			    // write the map to container div
 			    map.write("mapdiv");
@@ -60,7 +61,57 @@
     </head>
 
     <body>
-        <div id="mapdiv" style="width: 100%; background-color:#7CD5F2; height: 900px;"></div>
+       
+
+<div id='cssmenu'>
+
+<ul>
+   
+   <li class='active'>
+      <a href='../index.html'>
+         <span>Home</span>
+      </a>
+   </li>
+
+  
+   <li class='has-sub'><a href='#'><span>Game</span></a>
+      <ul>
+         <li><a href='../index.html'><span>Quit</span></a></li>
+         <li><a href='#'><span>Credits</span></a></li>
+      </ul>
+   </li>
+  
+   <li class='has-sub'><a href='#'><span>About</span></a>
+      <ul>
+         <li>
+            <a href='#'>
+               <span>Game Rules</span>
+            </a>
+         </li>
+        
+         <li class='last'>
+            <a href='#'>
+               <span>Leaderboard</span>
+            </a>
+         </li>
+      </ul>
+   </li>
+   
+   <li class='last'><a href='#'><span>Contact</span></a></li>
+   
+   <li class='has-sub'><a href='#'><span>Account</span></a>
+      <ul>
+         <li>
+            <a href=''>
+               <span>Log In</span>
+            </a>
+         </li>
+      </ul>
+   </li>
+</ul>
+</div>
+
+ <div id="mapdiv" class="map" style="width: 100%; background-color:#7CD5F2; height: 900px;"></div>
     </body>
 
 </html>
