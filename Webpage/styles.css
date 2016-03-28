@@ -24,7 +24,7 @@
 }
 #cssmenu > ul li {
   display: inline-block;
-  *display: inline;
+  /*display: inline;*/
   zoom: 1;
 }
 #cssmenu > ul li.right {
