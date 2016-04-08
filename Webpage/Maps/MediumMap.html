@@ -9,7 +9,7 @@
         <script src="ammap.js" type="text/javascript"></script>
         <!-- map file should be included after ammap.js -->
 		<script src="MediumMap.js" type="text/javascript"></script>
-
+		
         <script src="black.js" type="text/javascript"></script>
         <script>
 		
@@ -58,17 +58,43 @@
 			    // write the map to container div
 			    map.write("mapdiv");
 				
-				 map.addListener("clickMapObject", function (event) {
-        if (event.mapObject.id == "Alaska") {
-            window.alert("You selected Alaska");
-        }
+				map.addListener("clickMapObject", function (event) {
+			if (event.mapObject.id == "Alaska") {
+				window.alert("You selected Alaska");
+			}
 
-    });
-				
 			});
+				
+			
+			var area = map.getObjectById("Alaska");
+			area.color = '#000FF';
+			area.colorReal = area.color;
+			
+			map.returnInitialColor(area);
+				
+			for (i = 0; i < 3; i++)
+			{
+				console.log("Please choose a territory");
+				
+				map.addListener("clickMapObject", function (event) {
+					
+					var selectedArea = event.mapObject.title;
+					var selectedColor = selectedArea;
+					window.alert("You selected " +  selectedArea);
+					selectedColor.color = '#fff00';
+					selectedColor.colorReal = selectedColor.color;
+					map.returnInitialColor(selectedColor);
+	
+				});
+				
+			}
+				
+				
+		});
 			
 
         </script>
+		
     </head>
 
     <body>
