@@ -12,12 +12,14 @@
 
         <script src="black.js" type="text/javascript"></script>
         <script>
-
+		
+			var map
 			AmCharts.theme = AmCharts.themes.black;
 			// add all your code to this method, as this will ensure that page is loaded
 			AmCharts.ready(function() {
 			    // create AmMap object
-			    var map = new AmCharts.AmMap();
+			    map = new AmCharts.AmMap();
+				map.balloon.color = "#000000"
 
 			    // set path to images
 
@@ -44,9 +46,10 @@
 			     * selectedColor indicates color of the clicked area.
 			     */
 			    map.areasSettings = {
-			        autoZoom: true,
-			        rollOverBrightness:10,
-			        selectedBrightness:20
+			        autoZoom: false,
+					selectable: true,
+			        seleectedColor : "green"
+					
 			    };
 
 			    // let's say we want a small map to be displayed, so let's create and add it to the map
@@ -54,7 +57,16 @@
 
 			    // write the map to container div
 			    map.write("mapdiv");
+				
+				 map.addListener("clickMapObject", function (event) {
+        if (event.mapObject.id == "Alaska") {
+            window.alert("You selected Alaska");
+        }
+
+    });
+				
 			});
+			
 
         </script>
     </head>
