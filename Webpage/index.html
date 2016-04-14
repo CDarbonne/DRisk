@@ -27,38 +27,26 @@
   
    <li class='has-sub'><a href='#'><span>Game</span></a>
       <ul>
-         <li id = "playGame"><a href='#'><span>Play</span></a></li>
-         <li><a href="Maps/EasyMap.html"><span>Example Map</span></a></li>
-        <!-- <li><a href='#'><span>UPLOAD A MAP</span></a></li> -->
-         <li><a href='#'><span>Credits</span></a></li>
+         <li id = "playGame"><a href = '#'><span>Play</span></a></li>
+         <!--<li><a href="Maps/EasyMap.html"><span>Example Map</span></a></li>-->
+         <!--<li><a href='#'><span>UPLOAD A MAP</span></a></li> -->
+         <li id = "Credits"><a href = '#'><span>Credits</span></a></li>
       </ul>
    </li>
   
    <li class='has-sub'><a href='#'><span>About</span></a>
       <ul>
-         <li>
-            <a href='#'>
-               <span>Game Rules</span>
-            </a>
-         </li>
+         <li id = "GameRules"><a href = '#'><span>Game Rules</span></a></li>
         
-         <li class='last'>
-            <a href='#'>
-               <span>Leaderboard</span>
-            </a>
-         </li>
+         <li id = "Leaderboard"><a href = '#'><span>Leaderboard</span></a></li>
       </ul>
    </li>
    
-   <li class='last'><a href='#'><span>Contact</span></a></li>
+   <li class='last' id = "Contact"><a href = '#'><span>Contact</span></a></li>
    
    <li class='has-sub'><a href='#'><span>Account</span></a>
       <ul>
-         <li>
-            <a href=''>
-               <span>Log In</span>
-            </a>
-         </li>
+         <li><a href = '#'><span>Log In</span></a></li>
       </ul>
    </li>
 </ul>
@@ -67,31 +55,63 @@
 
 <div id='setupMenu' class = "modal">
 
-   <div class = "menuContent">
+   <div class = "modalContent">
 
-      <div id = "menuHeader">
-         <span class = "closeMenu">x</span>
+      <div class = "header" id = "menuHeader">
+         <span class = "closeModal">x</span>
          <h2>Game Setup</h2>
       </div>
 
-      <div id = "menuBody">
+      <div class = "body" id = "menuBody">
          <p>
             Number of Players: 
+            <select id = "numPlayers">
+               <option value="Number of Players">---------------</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+            </select>
          </p><p>
             Team Color:
+            <select id = "teamColor">
+               <option value="Team Color">----------------</option>
+               <option value="Red">Red</option>
+               <option value="Green">Green</option>
+               <option value="Purple">Purple</option>
+               <option value="Blue">Blue</option>
+               <option value="Yellow">Yellow</option>
+            </select>
          </p><p>
-            Team Name:
+            Team Name: <input type = "text" name = "TeamName" id = "TeamName">
          </p><p>
             Map:
+            <select id = "mapSelect">
+               <option value="Map">----------------</option>
+               <option value="Easy">Easy</option>
+               <option value="Medium">Medium</option>
+               <option value="Hard">Hard</option>
+               <option value="United States">United States</option>
+               <option value="Khorvaire">Khorvaire</option>
+            </select>
          </p>
       </div>
 
-      <div id = "menuFooter">
-         <button>Start Game</button>
+      <div class = "footer" id = "menuFooter">
+         <button id = "StartButton">Start Game</button>
       </div>
    </div>
 </div>
 
+<div id = "Contact" class = "modal">
+   <div class = "header" id = "ContactHeader">
+         <span class = "closeMenu">x</span>
+         <h2>Contact</h2>
+   </div>
+</div>
+
 <script src="JavaScript Files/setupMenu.js"></script>
+<script src="JavaScript Files/infoBoxes.js"></script>
+
 </body>
 <html>

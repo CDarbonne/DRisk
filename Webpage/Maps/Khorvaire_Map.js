@@ -2,7 +2,7 @@
 	I think Khorvaire is an island continent from the Dungeons and Dragons Universe.
 */
 
-AmCharts.maps.usaLow={
+AmCharts.maps.worldLow={
 	"svg": {
 		"defs": {
 			"amcharts:ammap": {
