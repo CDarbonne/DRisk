@@ -1,6 +1,7 @@
 
 #cssmenu {
   z-index: 1000;
+  position: absolute;
 }
 
 #cssmenu > ul {
@@ -116,6 +117,13 @@
     background-image: none;
   }
 }
+
+#setupMenu {
+	display: block;
+	position: absolute;
+	
+}
+
 /* Make sure they show even if hidden in mobile view by JS 
 @media (min-width: 600px) {
   #cssmenu > ul > li.collapsed {
