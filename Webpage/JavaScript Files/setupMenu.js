@@ -8,7 +8,7 @@ var playBtn = document.getElementById("playGame");
 var startBtn = document.getElementById("StartButton");
 
 //Get the <span> element that closes the modal
-var span = document.getElementsByClassName("closeModal")[0];
+var span = document.getElementById("closeMenu");
 
 //When the user clicks on the button, open the modal
 playBtn.onclick = function() {

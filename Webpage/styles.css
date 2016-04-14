@@ -145,6 +145,7 @@
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+#closeMenu,
 .closeModal {
   color: #aaa;
   float: right;
@@ -152,6 +153,8 @@
   font-weight: bold;
 }
 
+#closeMenu:hover,
+#closeMenu:focus,
 .closeModal:hover,
 .closeModal:focus {
   color: black;
@@ -159,17 +162,17 @@
   cursor: pointer;
 }
 
-#menuHeader {
+.header {
   padding: 2px 16px;
   background-color: #CC0000;
   color: white;
 }
 
-#menuBody {
+.body {
   padding: 2px 16px;
 }
 
-#menuFooter {
+.footer {
   padding: 2px 16px;
   background-color: #CC0000;
   color: white;
