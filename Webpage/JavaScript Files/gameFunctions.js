@@ -35,7 +35,7 @@
 			     */
 			    map.areasSettings = {
 			        autoZoom: false,
-					selectable: true,
+					//selectable: true,
 			        selectedColor : "blue"
 					
 			    };
@@ -76,8 +76,7 @@ map.addListener("clickMapObject", function (event) {
 	var selectedArea = event.mapObject.title;
 	var selectedColor = selectedArea;
 	//window.alert("You selected " +  selectedArea);
-	selectedColor.color = "green";
-
+	console.log(selectedArea);
 
 	selectedColor.colorReal = selectedColor.color;
 	//map.returnInitialColor(selectedColor);

@@ -3300,6 +3300,7 @@
                 }
             }
         },
+        //Selected object functions
         selectObject: function(a, b) {
             var c = this;
             a || (a = c.dataProvider);
@@ -4358,6 +4359,8 @@
         }
     })
 })();
+
+//Button attributes
 (function() {
     var d = window.AmCharts;
     d.ZoomControl = d.Class({
@@ -4816,21 +4819,24 @@
         }
     })
 })();
-(function() {
+
+//Map color changing functions
+(function areaColor() {
     var d = window.AmCharts;
     d.AreasSettings = d.Class({
         construct: function(a) {
             this.cname = "AreasSettings";
+            this.selectable = true;
             this.alpha = 1;
             this.autoZoom=!1;
             this.balloonText = "[[title]]";
-            this.color = "#FFCC00";
+            this.color = "#DADADA";
             this.colorSolid = "#990000";
             this.unlistedAreasAlpha = 1;
             this.unlistedAreasColor = "#DDDDDD";
             this.outlineColor = "#FFFFFF";
             this.outlineThickness = this.outlineAlpha = 1;
-            this.selectedColor = this.rollOverOutlineColor = "#CC0000";
+            this.rollOverOutlineColor = "#CC0000";
             this.unlistedAreasOutlineColor = "#FFFFFF";
             this.unlistedAreasOutlineAlpha = 1;
             this.descriptionWindowWidth =
@@ -4840,6 +4846,7 @@
         }
     })
 })();
+
 (function() {
     var d = window.AmCharts;
     d.ImagesProcessor = d.Class({
