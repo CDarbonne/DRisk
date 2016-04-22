@@ -36,7 +36,7 @@
 			    map.areasSettings = {
 			        autoZoom: false,
 					selectable: true,
-			        selectedColor : "green"
+			        selectedColor : "blue"
 					
 			    };
 
@@ -46,7 +46,22 @@
 			    // write the map to container div
 			    map.write("mapdiv");
 
-				
+
+
+/*=============================TEST LOCAL STORAGE==================================*/
+
+var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
+var teamColor = JSON.parse(localStorage.getItem('teamColor'));
+var teamName = JSON.parse(localStorage.getItem('teamName'));
+var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+
+
+
+console.log("testing");
+console.log(numPlayers);	
+console.log(teamColor);
+console.log(teamName);
+console.log(mapSelect);			
 		
 
 
@@ -61,9 +76,11 @@ map.addListener("clickMapObject", function (event) {
 	var selectedArea = event.mapObject.title;
 	var selectedColor = selectedArea;
 	//window.alert("You selected " +  selectedArea);
-	selectedColor.color = '#fff00';
+	selectedColor.color = "green";
+
+
 	selectedColor.colorReal = selectedColor.color;
-	map.returnInitialColor(selectedColor);
+	//map.returnInitialColor(selectedColor);
 
 	if (attackBool == 0)
 	{

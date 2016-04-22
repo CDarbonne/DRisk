@@ -22,16 +22,34 @@ span.onclick = function() {
 
 //When the user clicks on the button, the game will create a game based on the settings chosen
 startBtn.onclick = function() {
+
+	//Get the values chosen for game setup
 	var numPlayerSelect = document.getElementById("numPlayers");
 	var teamColorSelect = document.getElementById("teamColor");
 	var teamName = document.getElementById("TeamName");
 	var mapSelect = document.getElementById("mapSelect");
+	
+	//Erase all previously saved values
+	localStorage.setItem('numPlayers', JSON.stringify(0));
+	localStorage.setItem('teamColor', JSON.stringify(0));
+	localStorage.setItem('teamName', JSON.stringify(0));
+	localStorage.setItem('mapSelect', JSON.stringify(0));
+
+	//Save new values for setup
+    localStorage.setItem('numPlayers', JSON.stringify(numPlayerSelect.value));
+    localStorage.setItem('teamColor', JSON.stringify(teamColorSelect.value));
+    localStorage.setItem('teamName', JSON.stringify(teamName.value));
+    localStorage.setItem('mapSelect', JSON.stringify(mapSelect.value));
+
+    //Test values recieved
 	console.log(numPlayerSelect.value);
 	console.log(teamColorSelect.value);
 	console.log(mapSelect.value);
 	console.log(teamName.value);
-	window.location.href = 'Maps/EasyMap.html';
-	//document.write("<script src="EasyMap.js" type="text/javascript"></script>");
+
+	//Load game page
+	window.location.href = 'Maps/'+mapSelect.value+'Map.html';
+               
 }
 
 /*//When the user clicks anywhere outside of the modal, close it

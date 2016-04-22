@@ -3375,6 +3375,8 @@
                 chart: c
             })
         },
+
+        //color functions
         returnInitialColor: function(a, b) {
             this.returnInitialColorReal(a);
             b && (a.isFirst=!1);
