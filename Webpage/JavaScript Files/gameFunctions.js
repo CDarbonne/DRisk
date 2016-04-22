@@ -25,6 +25,7 @@
 			    var dataProvider = {
 			        mapVar: AmCharts.maps.worldLow,
 			        getAreasFromMap:true
+             
 			    };
 			    // pass data provider to the map object
 			    map.dataProvider = dataProvider;
@@ -45,6 +46,24 @@
 
 			    // write the map to container div
 			    map.write("mapdiv");
+                           
+                           
+						   //This is the function that changes color of the individual
+						   //areas
+                           function test() {
+                            // generate random color
+                            var color = Math.floor( Math.random() * 0xffffff );
+    
+                            // update US color in data
+                            var area = map.getObjectById("Winterfell");
+                            area.color = '#' + color.toString(16);
+                            area.colorReal = area.color;
+    
+                            // make the chart take in new color
+                            //map.returnInitialColor(area);
+}
+
+test();
 
 
 
