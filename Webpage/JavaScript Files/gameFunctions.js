@@ -52,19 +52,40 @@
 						   //areas
                            function test() {
                             // generate random color
-                            var color = Math.floor( Math.random() * 0xffffff );
+                            //var color = Math.floor( Math.random() * 0xffffff );
     
                             // update US color in data
                             var area = map.getObjectById("Winterfell");
-                            area.color = '#' + color.toString(16);
+                            area.color = '#5e3513';
                             area.colorReal = area.color;
     
                             // make the chart take in new color
                             //map.returnInitialColor(area);
+							}
+
+
+
+
+
+/*============================= COLOR CHANGING FUNCTIONS ==========================*/
+
+//This is the function that changes color of the individual areas
+function changeColor(id) {
+
+	this.id = id;
+	console.log(id);
+
+	// generate random color
+    //var color = Math.floor( Math.random() * 0xffffff );
+
+	// update US color in data
+	var area = map.getObjectById(id);
+	area.color = '#5e3513';
+	area.colorReal = area.color;
+    
+	// make the chart take in new color
+	//map.returnInitialColor(area);
 }
-
-test();
-
 
 
 /*=============================TEST LOCAL STORAGE==================================*/
@@ -92,14 +113,15 @@ var attackBool = 0;
 
 map.addListener("clickMapObject", function (event) {
 						
-	var selectedArea = event.mapObject.title;
+	var selectedArea = event.mapObject.id;
 	var selectedColor = selectedArea;
-	//window.alert("You selected " +  selectedArea);
-	console.log(selectedArea);
+	console.log("selected area: " + selectedArea);
+	changeColor(selectedArea);
+	//test();
 
 	selectedColor.colorReal = selectedColor.color;
 	//map.returnInitialColor(selectedColor);
-
+if (yourTurn == 1) {
 	if (attackBool == 0)
 	{
 		attacker = selectedArea;
@@ -114,9 +136,10 @@ map.addListener("clickMapObject", function (event) {
 		attack(attacker, defender);
 		attackBool = 0;
 	}
-});
+}
+});//listener function
 
-});
+});//ammap ready function
 
 
 /*============================== ATTACK FUNCTIONS ===================================*/
@@ -181,7 +204,7 @@ for(i = 0; i < attackDice.length; i++)
             //Console test output
             console.log(attackDice[i] + " loses to " + defendDice[j]);
         }
-        else if(attackDice[i] === defendDice[j])
+        else if(attackDice[i] == defendDice[j])
         {
             //Console test output
             console.log("Tie, Defenders win.");
@@ -189,3 +212,14 @@ for(i = 0; i < attackDice.length; i++)
     }
 }
 }
+
+
+
+
+
+/*=========================== TEAM TERRITORY CHOOSING ==============================*/
+
+
+
+
+
