@@ -37,7 +37,7 @@
 			    map.areasSettings = {
 			        autoZoom: false,
 					//selectable: true,
-			        selectedColor : "blue"
+			        //selectedColor : "blue"
 					
 			    };
 
