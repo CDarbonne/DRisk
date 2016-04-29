@@ -8,9 +8,16 @@
 			    // create AmMap object
 			    map = new AmCharts.AmMap();
 				map.balloon.color = "#000000"
-
-			    // set path to images
-
+				map.zoomOnDoubleClick = false;
+				
+			    
+				/*Allows you to add a title to the map
+				map.addTitle("Easteros", 25);
+				map.areasSettings = {
+				unlistedAreasColor: "#000000",
+				unlistedAreasAlpha: 0.1
+				}; */
+				
 
 			    /* create data provider object
 			     mapVar tells the map name of the variable of the map data. You have to
@@ -36,8 +43,10 @@
 			     */
 			    map.areasSettings = {
 			        autoZoom: false,
-					//selectable: true,
-			        //selectedColor : "blue"
+					selectable: true,
+			        rollOverOutlineColor: "#000000",
+					//rollOverColor: "#62B4EB",
+					
 					
 			    };
 
@@ -72,9 +81,15 @@
 //This is the function that changes color of the individual areas
 function changeColor(id) {
 
+	
 	this.id = id;
 	console.log(id);
 
+	/*PHP to get the army color based on playerID
+	*/
+	
+	
+	
 	// generate random color
     //var color = Math.floor( Math.random() * 0xffffff );
 
@@ -104,48 +119,7 @@ console.log(teamName);
 console.log(mapSelect);			
 		
 
-		
-/*============================== CARD FUNCTIONS ===================================*/
-		
-//function displayDeck(deck, id) {
-function displayDeck(id) {
-  var div = document.getElementById(id);
-  var functionNumber;
-  
-  var count = 0;
-  //deck.forEach(function(e) {
 
-    //var currentCard = '<div id="'+e.suit+e.num+'" class="moveContainer" onmousedown="generalFunction('+functionNumber+', this);">';
-	var currentCard = '<div id="Australia" class="moveContainer">';
-    currentCard += '    <div class="cardContainer">';
-    currentCard += '      <div class="cardFront"><img src="../images/Cards/Easy/Australia.png" /></div>';
-    //currentCard += '      <div class="cardBack"><img src="../images/Cards/back.gif" /></div>';
-    currentCard += '    </div>';
-    currentCard += '</div>';
-
-    if (count == 0) {
-      div.innerHTML = currentCard;
-    }
-    else {
-    div.innerHTML = div.innerHTML + currentCard;
-    }
-    //count++;
-  //});
-}		
-		
-function moveCardOverTime(card, xPos, yPos, time) {
-  // m = moveContainer
-  var m = document.getElementById(''+card.suit+card.num);
-
-  m.style.transition = 'all '+time+'ms';
-  m.style.transform = 'translate('+xPos+'px,'+yPos+'px)';
-  m.classList.toggle('moveCard');
-}
-
-
-displayDeck("card");
-		
-		
 /*============================== ONCLICK FUNCTIONS ==================================*/
 
 var attacker;
@@ -154,6 +128,7 @@ var attackBool = 0;
 
 map.addListener("clickMapObject", function (event) {
 						
+	
 	var selectedArea = event.mapObject.id;
 	var selectedColor = selectedArea;
 	console.log("selected area: " + selectedArea);
