@@ -58,7 +58,7 @@
 }
 #cssmenu > ul li.has-sub > a.active,
 #cssmenu > ul li.has-sub > a:hover {
-  background: #d80041 url('../img//caret.png') no-repeat;
+  background: #d80041 url('../img/caret.png') no-repeat;
   background-position: 90% 195%;
 }
 #cssmenu > ul li a {
@@ -129,7 +129,7 @@
 }*/
 
 html { 
-  background: url('/assets/img/War.jpg') no-repeat center center fixed; 
+  background: url('../img/War.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
