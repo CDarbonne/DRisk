@@ -1,0 +1,8 @@
+This PHP file opens a connection to the database on myPHP admin. You must have it installed on your computer,
+running, with the Apache server also running. You should edit your mysql.info file to have no password or else
+you will not be able to connect to the database. This will insert whatever information you change the variables 
+listed in the PHP code into the database. I'm still working on the select statements.
+
+Keep in mind that the location for the PHP_database_connection file must be in /XAMP/htdocs
+
+Replace XAMP with whatever server you're running.
