@@ -77,7 +77,7 @@
 	overflow: auto;
 }
 
-div.map {
+#mapdiv {
   /*transform: scale(0.8);*/
   -webkit-transform: scale(0.75);
   position:absolute;
