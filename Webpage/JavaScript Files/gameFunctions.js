@@ -104,7 +104,48 @@ console.log(teamName);
 console.log(mapSelect);			
 		
 
+		
+/*============================== CARD FUNCTIONS ===================================*/
+		
+//function displayDeck(deck, id) {
+function displayDeck(id) {
+  var div = document.getElementById(id);
+  var functionNumber;
+  
+  var count = 0;
+  //deck.forEach(function(e) {
 
+    //var currentCard = '<div id="'+e.suit+e.num+'" class="moveContainer" onmousedown="generalFunction('+functionNumber+', this);">';
+	var currentCard = '<div id="Australia" class="moveContainer">';
+    currentCard += '    <div class="cardContainer">';
+    currentCard += '      <div class="cardFront"><img src="../images/Cards/Easy/Australia.png" /></div>';
+    //currentCard += '      <div class="cardBack"><img src="../images/Cards/back.gif" /></div>';
+    currentCard += '    </div>';
+    currentCard += '</div>';
+
+    if (count == 0) {
+      div.innerHTML = currentCard;
+    }
+    else {
+    div.innerHTML = div.innerHTML + currentCard;
+    }
+    //count++;
+  //});
+}		
+		
+function moveCardOverTime(card, xPos, yPos, time) {
+  // m = moveContainer
+  var m = document.getElementById(''+card.suit+card.num);
+
+  m.style.transition = 'all '+time+'ms';
+  m.style.transform = 'translate('+xPos+'px,'+yPos+'px)';
+  m.classList.toggle('moveCard');
+}
+
+
+displayDeck("card");
+		
+		
 /*============================== ONCLICK FUNCTIONS ==================================*/
 
 var attacker;
