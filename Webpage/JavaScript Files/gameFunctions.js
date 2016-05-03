@@ -1,3 +1,37 @@
+/*============================= GLOBAL VARIABLES ==============================*/
+
+var players = [];
+
+/*=============================LOCAL STORAGE==================================*/
+
+var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
+var teamColor = JSON.parse(localStorage.getItem('teamColor'));
+var teamName = JSON.parse(localStorage.getItem('teamName'));
+var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+
+
+
+console.log("testing");
+console.log(numPlayers);	
+console.log(teamColor);
+console.log(teamName);
+console.log(mapSelect);			
+
+players[0] = {name: teamName, color: teamColor, turn: 0};
+players[1] = {name: "chris", color: "blue", turn: 1};
+
+console.log(players[0].name + " " + players[0].color + " " + players[0].turn);
+console.log(players[1].name + " " + players[1].color + " " + players[1].turn);
+
+
+/*		
+Player player1 = new Player(teamName, teamColor);
+console.log(player1.name);
+console.log(player1.color);
+console.log(player1.turn);
+console.log("got here");
+*/
+
 /*======================== AMMAP MAP CREATION FUNCTION ========================*/
 
 
@@ -103,22 +137,6 @@ function changeColor(id) {
 }
 
 
-/*=============================TEST LOCAL STORAGE==================================*/
-
-var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
-var teamColor = JSON.parse(localStorage.getItem('teamColor'));
-var teamName = JSON.parse(localStorage.getItem('teamName'));
-var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
-
-
-
-console.log("testing");
-console.log(numPlayers);	
-console.log(teamColor);
-console.log(teamName);
-console.log(mapSelect);			
-		
-
 
 /*============================== ONCLICK FUNCTIONS ==================================*/
 
@@ -132,7 +150,7 @@ map.addListener("clickMapObject", function (event) {
 	var selectedArea = event.mapObject.id;
 	var selectedColor = selectedArea;
 	console.log("selected area: " + selectedArea);
-	changeColor(selectedArea);
+	//changeColor(selectedArea);
 	//test();
 
 	selectedColor.colorReal = selectedColor.color;

@@ -30,7 +30,6 @@
          <li id = "playGame"><a href = '#'><span>Play</span></a></li>
          <!--<li><a href="Maps/EasyMap.html"><span>Example Map</span></a></li>-->
          <!--<li><a href='#'><span>UPLOAD A MAP</span></a></li> -->
-         <li id = "Credits"><a href = '#'><span>Credits</span></a></li>
       </ul>
    </li>
   
@@ -65,7 +64,7 @@
       <div class = "body" id = "menuBody">
          <p>
             Number of Players: 
-            <select id = "numPlayers">
+            <select id = "numPlayers" oninput = "JavaScript Files/setupMenu.js">
                <option value="Number of Players">---------------</option>
                <option value="1">1</option>
                <option value="2">2</option>
@@ -74,7 +73,7 @@
             </select>
          </p><p>
             Team Color:
-            <select id = "teamColor">
+            <select id = "teamColor" required>
                <option value="Team Color">----------------</option>
                <option value="Red">Red</option>
                <option value="Green">Green</option>
@@ -86,7 +85,7 @@
             Team Name: <input type = "text" name = "TeamName" id = "TeamName">
          </p><p>
             Map:
-            <select id = "mapSelect">
+            <select id = "mapSelect" required>
                <option value="Map">----------------</option>
                <option value="Easy">Easy</option>
                <option value="Medium">Medium</option>
@@ -130,6 +129,7 @@
 
 <script src="JavaScript Files/setupMenu.js"></script>
 <script src="JavaScript Files/infoBoxes.js"></script>
+
 
 </body>
 <html>
