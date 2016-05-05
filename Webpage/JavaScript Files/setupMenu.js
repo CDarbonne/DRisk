@@ -20,8 +20,8 @@ span.onclick = function() {
 	modal.style.display = "none";
 }
 
-object = document.getElementById("numPlayers");
-object.oninput = adjustMenu();
+//object = document.getElementById("numPlayers");
+//object.oninput = adjustMenu();
 
 //When the user changes the number of players:
 function adjustMenu() {
@@ -31,13 +31,34 @@ function adjustMenu() {
 	console.log("yo");
 	console.log(numPlayerSelect.value);
 
-	if (numPlayerSelect.value > 1) {
+	if (numPlayerSelect.value >= 1) {
 
 		var div = document.getElementById("menuBody");
 
+		var newMenu =" <p>";
+        newMenu +="Number of Players: ";
+        newMenu +="<select id = \"numPlayers\" oninput = \"adjustMenu()\">";
+        newMenu +="   <option value=\"Number of Players\">---------------</option>";
+            
+        for (var x = 1; x <= 4; x++) {
+
+        	console.log(x);
+        	if (x == numPlayerSelect.value){
+        	newMenu +="   <option value=\"" + x + "\" selected= \"selected\">" + x + "</option>";
+        	console.log("selected");
+        	}
+        	else {
+        	newMenu +="   <option value=\"" + x + "\">" + x + "</option>";
+        	}
+
+
+        }
+        newMenu +=" </select>";
+
 		for (var i = 1; i <= numPlayerSelect.value; i++) {
 
-			var newMenu ="	<p>";
+			newMenu +="	<p><br><br>";
+	        newMenu +="    Player " + i;
 	        newMenu +="    Team Color:";
 	        newMenu +="    <select id = \"teamColor\" required>";
 	        newMenu +="      <option value=\"Team Color\">----------------</option>";
@@ -50,22 +71,28 @@ function adjustMenu() {
 	        newMenu +=" </p><p>";
 	        newMenu +="    Team Name: <input type = \"text\" name = \"TeamName\" id = \"TeamName\">";
 	        newMenu +=" </p><p>";
-	        newMenu +="   Map:";
-	        newMenu +="    <select id = \"mapSelect\" required>";
-	        newMenu +="       <option value=\"Map\">----------------</option>";
-	        newMenu +="      <option value=\"Easy\">Easy</option>";
-	        newMenu +="      <option value=\"Medium\">Medium</option>";
-	        newMenu +="      <option value=\"Hard\">Hard</option>";
-	        newMenu +="      <option value=\"US\">United States</option>";
-	        newMenu +="      <option value=\"Khorvaire\">Khorvaire</option>";
-	        newMenu +="      <option value=\"Easteros\">Easteros</option>";
-	        newMenu +="   </select>";
-	        newMenu +=" </p>";
+	        
 
-	        div.innerHTML = newMenu;
+	        
 
-			
+			console.log("got here");
 		}
+
+		
+        newMenu +=" <p>";
+        newMenu +="    Map:";
+        newMenu +="    <select id = \"mapSelect\" required>";
+        newMenu +="       <option value=\"Map\">----------------</option>";
+        newMenu +="       <option value=\"Easy\">Easy</option>";
+        newMenu +="       <option value=\"Medium\">Medium</option>";
+        newMenu +="       <option value=\"Hard\">Hard</option>";
+        newMenu +="       <option value=\"US\">United States</option>";
+        newMenu +="       <option value=\"Khorvaire\">Khorvaire</option>";
+        newMenu +="       <option value=\"Easteros\">Easteros</option>";
+
+        newMenu +="    </select>";
+        newMenu +=" </p>";
+		div.innerHTML = newMenu;
 	}
 }
 
