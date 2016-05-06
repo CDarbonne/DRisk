@@ -102,6 +102,13 @@ startBtn.onclick = function() {
 	//Get the values chosen for game setup
 	var numPlayerSelect = document.getElementById("numPlayers");
 	var mapSelect = document.getElementById("mapSelect");
+
+	if (numPlayerSelect.value == "Number of Players") {
+		window.alert("Please fill in all available fields!");
+		console.log("Users are dumb...");
+		return;
+	}
+
 	
 	for (var i = 1; i <= numPlayerSelect.value; i++) {
 
@@ -111,7 +118,7 @@ startBtn.onclick = function() {
 		if (numPlayerSelect.value == "Number of Players" || teamColorSelect.value == "Team Color" || teamName.value == "" || mapSelect.value == "Map") {
 				window.alert("Please fill in all available fields!");
 				console.log("Users are dumb...");
-				break;
+				return;
 		}
 
 		else {
@@ -140,8 +147,9 @@ startBtn.onclick = function() {
 		console.log(teamName.value);
 */
 		//Load game page
-		window.location.href = 'Maps/'+mapSelect.value+'Map.html';
-	               
+		//window.location.href = 'Maps/'+mapSelect.value+'Map.html';
+		window.location.href = 'Maps/SuperMap.html';
+
 }
 
 
