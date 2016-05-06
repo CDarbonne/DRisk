@@ -22,7 +22,78 @@ function initializeDeck(deck) {
   return deck;
 }
 
-// create EASTEROS map cards:
+
+// create EASY map cards (12 territories):
+EASY_CARDS[0] = new Card("Australia", "Easy", "Australia", 1, "images/Cards/Easy/Australia.png");
+EASY_CARDS[1] = new Card("EasternEurope", "Easy", "Europe", 1, "images/Cards/Easy/EasternEurope.png");
+EASY_CARDS[2] = new Card("LowerNorthAmerica", "Easy", "NorthAmerica", 1, "images/Cards/Easy/LowerNorthAmerica.png");
+EASY_CARDS[3] = new Card("LowerSouthAmerica", "Easy", "SouthAmerica", 1, "images/Cards/Easy/LowerSouthAmerica.png");
+EASY_CARDS[4] = new Card("NorthAsia", "Easy", "Asia", 2, "images/Cards/Easy/NorthAsia.png");
+EASY_CARDS[5] = new Card("NorthwestAfrica", "Easy", "Africa", 2, "images/Cards/Easy/NorthwestAfrica.png");
+EASY_CARDS[6] = new Card("SoutheastAfrica", "Easy", "Africa", 1, "images/Cards/Easy/SoutheastAfrica.png");
+EASY_CARDS[7] = new Card("SoutheastAsia", "Easy", "Asia", 1, "images/Cards/Easy/SoutheastAsia.png");
+EASY_CARDS[8] = new Card("SouthwestAsia", "Easy", "Asia", 1, "images/Cards/Easy/SouthwestAsia.png");
+EASY_CARDS[9] = new Card("UpperNorthAmerica", "Easy", "NorthAmerica", 2, "images/Cards/Easy/UpperNorthAmerica.png");
+EASY_CARDS[10] = new Card("UpperSouthAmerica", "Easy", "SouthAmerica", 1, "images/Cards/Easy/UpperSouthAmerica.png");
+EASY_CARDS[11] = new Card("WesternEurope", "Easy", "Europe", 2, "images/Cards/Easy/WesternEurope.png");
+
+// create MEDIUM map cards (21 territories):
+MEDIUM_CARDS[0] = new Card("Alaska", "Medium", "NorthAmerica", 1, "images/Cards/Medium/Alaska.png");
+MEDIUM_CARDS[1] = new Card("Argentina", "Medium", "SouthAmerica", 1, "images/Cards/Medium/Argentina.png");
+MEDIUM_CARDS[2] = new Card("AustralianIslands", "Medium", "Australia", 1, "images/Cards/Medium/AustralianIslands.png");
+MEDIUM_CARDS[3] = new Card("AustralianMainland", "Medium", "Australia", 2, "images/Cards/Medium/AustralianMainland.png");
+MEDIUM_CARDS[4] = new Card("Brazil", "Medium", "SouthAmerica", 2, "images/Cards/Medium/Brazil.png");
+MEDIUM_CARDS[5] = new Card("Canada", "Medium", "NorthAmerica", 1, "images/Cards/Medium/Canada.png");
+MEDIUM_CARDS[6] = new Card("CentralAmerica", "Medium", "NorthAmerica", 1, "images/Cards/Medium/CentralAmerica.png");
+MEDIUM_CARDS[7] = new Card("China", "Medium", "Asia", 1, "images/Cards/Medium/China.png");
+MEDIUM_CARDS[8] = new Card("EasternEurope", "Medium", "Europe", 1, "images/Cards/Medium/EasternEurope.png");
+MEDIUM_CARDS[9] = new Card("GreatBritain", "Medium", "Europe", 1, "images/Cards/Medium/GreatBritain.png");
+MEDIUM_CARDS[10] = new Card("Greenland", "Medium", "NorthAmerica", 1, "images/Cards/Medium/Greenland.png");
+MEDIUM_CARDS[11] = new Card("Iceland", "Medium", "Europe", 1, "images/Cards/Medium/Iceland.png");
+MEDIUM_CARDS[12] = new Card("India", "Medium", "Asia", 1, "images/Cards/Medium/India.png");
+MEDIUM_CARDS[13] = new Card("Japan", "Medium", "Asia", 2, "images/Cards/Medium/Japan.png");
+MEDIUM_CARDS[14] = new Card("Madagascar", "Medium", "Africa", 1, "images/Cards/Medium/Madagascar.png");
+MEDIUM_CARDS[15] = new Card("MiddleEast", "Medium", "Asia", 1, "images/Cards/Medium/MiddleEast.png");
+MEDIUM_CARDS[16] = new Card("NorthwestAfrica", "Medium", "Africa", 2, "images/Cards/Medium/NorthwestAfrica.png");
+MEDIUM_CARDS[17] = new Card("Russia", "Medium", "Asia", 2, "images/Cards/Medium/Russia.png");
+MEDIUM_CARDS[18] = new Card("SoutheastAfrica", "Medium", "Africa", 1, "images/Cards/Medium/SoutheastAfrica.png");
+MEDIUM_CARDS[19] = new Card("UnitedStates", "Medium", "NorthAmerica", 2, "images/Cards/Medium/UnitedStates.png");
+MEDIUM_CARDS[20] = new Card("WesternEurope", "Medium", "Europe", 2, "images/Cards/Medium/WesternEurope.png");
+
+// create HARD map cards (42 territories):
+HARD_CARDS[0] = new Card("Afghanistan", "Hard", "Asia", 1, "images/Cards/Hard/Afghanistan.png");
+HARD_CARDS[1] = new Card("Alaska", "Hard", "NorthAmerica", 1, "images/Cards/Hard/Alaska.png");
+HARD_CARDS[2] = new Card("Alberta", "Hard", "NorthAmerica", 1, "images/Cards/Hard/Alberta.png");
+HARD_CARDS[2] = new Card("Argentina", "Hard", "SouthAmerica", 1, "images/Cards/Hard/Argentina.png");
+HARD_CARDS[2] = new Card("Brazil", "Hard", "SouthAmerica", 1, "images/Cards/Hard/Brazil.png");
+HARD_CARDS[2] = new Card("CentralAmerica", "Hard", "NorthAmerica", 1, "images/Cards/Hard/CentralAmerica.png");
+HARD_CARDS[2] = new Card("China", "Hard", "Asia", 1, "images/Cards/Hard/China.png");
+HARD_CARDS[2] = new Card("Congo", "Hard", "Africa", 1, "images/Cards/Hard/Congo.png");
+HARD_CARDS[2] = new Card("EastAfrica", "Hard", "NorthAmerica", 1, "images/Cards/Hard/EastAfrica.png");
+HARD_CARDS[2] = new Card("EasternAustralia", "Hard", "Australia", 1, "images/Cards/Hard/EasternAustralia.png");
+HARD_CARDS[2] = new Card("EasternUnitedStates", "Hard", "NorthAmerica", 1, "images/Cards/Hard/EasternUnitedStates.png");
+HARD_CARDS[2] = new Card("Egypt", "Hard", "Africa", 1, "images/Cards/Hard/Egypt.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("Greenland", "Hard", "NorthAmerica", 1, "images/Cards/Hard/Greenland.png");
+HARD_CARDS[2] = new Card("Iceland", "Hard", "Europe", 1, "images/Cards/Hard/Iceland.png");
+HARD_CARDS[2] = new Card("India", "Hard", "Asia", 1, "images/Cards/Hard/India.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+HARD_CARDS[2] = new Card("GreatBritain", "Hard", "Europe", 1, "images/Cards/Hard/GreatBritain.png");
+
+
+// create EASTEROS map cards (66 territories):
 EASTEROS_CARDS[0] = new Card("Ashford", "Easteros", "TheReach", 2, "images/Cards/Easteros/Ashford.png");
 EASTEROS_CARDS[1] = new Card("BearIsland", "Easteros", "TheNorth", 1, "images/Cards/Easteros/BearIsland.png");
 EASTEROS_CARDS[2] = new Card("Blackhaven", "Easteros", "TheReach", 1, "images/Cards/Easteros/Blackhaven.png");

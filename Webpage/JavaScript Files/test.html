@@ -10,38 +10,68 @@
 	<script type="text/javascript" src="translationFunctions.js"></script>
 	
     <body>
-		<p id="demo" onclick="myFunction()" >Click Me!</p>
+		<p id="p1">test</p>
 	
-		<div id="cards"></div>
+		<div id="cards">
+			<img src="../images/Cards/back.png" width="60" style="width:100;" onclick="test();"/>
+		</div>
 	
 		<script>
 			
-			function myFunction() {
-				
-				var card = EASY_CARDS[0];
+			var i = 0;
+			/*
+			function displayDeck(deck, id) {
+				var div = document.getElementById(id);
+				var functionNumber;
+
+				if(deck.length == 28) functionNumber = 0;
+				if(deck.length == 1) functionNumber = 1;
+				if(deck.length == 52-29) functionNumber = 2;
+				var count = 0;
+				deck.forEach(function(e) {
+
+					var currentCard = '<div id="'+EASY_CARDS[0].id+'" class="moveContainer" onmousedown="generalFunction('+functionNumber+', this);">';
+					currentCard += '    <div class="cardContainer">';
+					currentCard += '      <div class="cardFront"><img src="cards/'+e.suit+e.num+'.gif" /></div>';
+					currentCard += '      <div class="cardBack"><img src="cards/back.gif" /></div>';
+					currentCard += '    </div>';
+					currentCard += '</div>';
+
+					if (count == 0) {
+						div.innerHTML = currentCard;
+					}
+					else {
+						div.innerHTML = div.innerHTML + currentCard;
+					}
+					count++;
+					});
+			*/
+			
+			function test() {
+			
+				testDeck(EASY_CARDS);
+
+			}
+			
+			// for testing purposes (displays cards and attributes)
+			function testDeck() {
+			
+				var deck = MEDIUM_CARDS;
+			
+				if (i > deck.length) i = 0;
+			
 				var div = document.getElementById('cards');
-				var currentCard = '<div id="'+card.id+'" class="moveContainer">';
-				
-				currentCard += '    <div class="cardContainer">';
-				currentCard += '      <div class="cardFront"><img src="'+card.path+'/'+card.name+'.png" /></div>';
-				currentCard += '      <div class="cardBack"><img src="../images/Cards/back.gif" /></div>';
-				currentCard += '    </div>';
-				currentCard += '</div>';
+	
+				div.innerHTML = '<img src="../'+deck[i].filepath+'" width="60" style="width:100;" onclick="testDeck();"/>'
+				console.log("id:       "+deck[i].id);
+				console.log("map:      "+deck[i].map);
+				console.log("region:   "+deck[i].region);
+				console.log("stars:    "+deck[i].stars);
+				console.log("filepath: "+deck[i].filepath);
+
+				i++;
 			
 			}
-			
-			function testDeck(deck) {
-				
-				var i;
-				var currentCard = '<div id="'+card.id+'" class="moveContainer">';
-				
-				for (i = 0; i < deck.length; i++)
-				{
-					
-				}
-				
-			}
-			
 			
 		</script>
 	
