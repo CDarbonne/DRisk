@@ -22,10 +22,73 @@ function initializeDeck(deck) {
   return deck;
 }
 
-// create EASY map cards:
-EASY_CARDS[0] = new Card("Australia", "Easy", "Australia", 1, "images/Cards/Easy/Australia.png");
-EASY_CARDS[1] = new Card("EasternEurope", "Easy", "Europe", 1, "images/Cards/Easy/EasternEurope.png");
-EASY_CARDS[2] = new Card("LowerNorthAmerica", "Easy", "NorthAmerica", 1, "images/Cards/Easy/LowerNorthAmerica.png");
+// create EASTEROS map cards:
+EASTEROS_CARDS[0] = new Card("Ashford", "Easteros", "TheReach", 2, "images/Cards/Easteros/Ashford.png");
+EASTEROS_CARDS[1] = new Card("BearIsland", "Easteros", "TheNorth", 1, "images/Cards/Easteros/BearIsland.png");
+EASTEROS_CARDS[2] = new Card("Blackhaven", "Easteros", "TheReach", 1, "images/Cards/Easteros/Blackhaven.png");
+EASTEROS_CARDS[3] = new Card("BrightwaterKeep", "Easteros", "TheReach", 1, "images/Cards/Easteros/BrightwaterKeep.png");
+EASTEROS_CARDS[4] = new Card("CapeKraken", "Easteros", "TheNorth", 1, "images/Cards/Easteros/CapeKraken.png");
+EASTEROS_CARDS[5] = new Card("CapeWrath", "Easteros", "Stormlands", 1, "images/Cards/Easteros/CapeWrath.png");
+EASTEROS_CARDS[6] = new Card("CasterlyRock", "Easteros", "Westerlands", 2, "images/Cards/Easteros/CasterlyRock.png");
+EASTEROS_CARDS[7] = new Card("Cornfield", "Easteros", "Westerlands", 1, "images/Cards/Easteros/Cornfield.png");
+EASTEROS_CARDS[8] = new Card("CrackclawPoint", "Easteros", "Crownlands", 1, "images/Cards/Easteros/CrackclawPoint.png");
+EASTEROS_CARDS[9] = new Card("Dragonstone", "Easteros", "Crownlands", 1, "images/Cards/Easteros/Dragonstone.png");
+EASTEROS_CARDS[10] = new Card("Duskendale", "Easteros", "Crownlands", 1, "images/Cards/Easteros/Duskendale.png");
+EASTEROS_CARDS[11] = new Card("GoldenGrove", "Easteros", "TheReach", 1, "images/Cards/Easteros/GoldenGrove.png");
+EASTEROS_CARDS[12] = new Card("GoldenTooth", "Easteros", "Westerlands", 1, "images/Cards/Easteros/GoldenTooth.png");
+EASTEROS_CARDS[13] = new Card("GrassyVale", "Easteros", "TheReach", 1, "images/Cards/Easteros/GrassyVale.png");
+EASTEROS_CARDS[14] = new Card("Gulltown", "Easteros", "TheVale", 1, "images/Cards/Easteros/Gulltown.png");
+EASTEROS_CARDS[15] = new Card("Harrenhall", "Easteros", "Riverlands", 2, "images/Cards/Easteros/Harrenhall.png");
+EASTEROS_CARDS[16] = new Card("HaystackHall", "Easteros", "Stormlands", 1, "images/Cards/Easteros/HaystackHall.png");
+EASTEROS_CARDS[17] = new Card("Highgarden", "Easteros", "TheReach", 2, "images/Cards/Easteros/Highgarden.png");
+EASTEROS_CARDS[18] = new Card("IronIslands", "Easteros", "IronIslands", 2, "images/Cards/Easteros/IronIslands.png");
+EASTEROS_CARDS[19] = new Card("KingsLanding", "Easteros", "Crownlands", 2, "images/Cards/Easteros/KingsLanding.png");
+EASTEROS_CARDS[20] = new Card("Kingswood", "Easteros", "Crownlands", 2, "images/Cards/Easteros/Kingswood.png");
+EASTEROS_CARDS[21] = new Card("Lannisport", "Easteros", "Westerlands", 1, "images/Cards/Easteros/Lannisport.png");
+EASTEROS_CARDS[22] = new Card("LonelyHills", "Easteros", "TheNorth", 1, "images/Cards/Easteros/LonelyHills.png");
+EASTEROS_CARDS[23] = new Card("LongLake", "Easteros", "LongLake", 2, "images/Cards/Easteros/LongLake.png");
+EASTEROS_CARDS[24] = new Card("OldOak", "Easteros", "TheReach", 2, "images/Cards/Easteros/OldOak.png");
+EASTEROS_CARDS[25] = new Card("Oldtown", "Easteros", "TheReach", 1, "images/Cards/Easteros/Oldtown.png");
+EASTEROS_CARDS[26] = new Card("PrincesPass", "Easteros", "Borne", 2, "images/Cards/Easteros/PrincesPass.png");
+EASTEROS_CARDS[27] = new Card("Riverrun", "Easteros", "Riverlands", 2, "images/Cards/Easteros/Riverrun.png");
+EASTEROS_CARDS[28] = new Card("Saltpans", "Easteros", "TheVale", 1, "images/Cards/Easteros/Saltpans.png");
+EASTEROS_CARDS[29] = new Card("SaltShore", "Easteros", "Dorne", 1, "images/Cards/Easteros/SaltShore.png");
+EASTEROS_CARDS[30] = new Card("Sandstone", "Easteros", "Dorne", 1, "images/Cards/Easteros/Sandstone.png");
+EASTEROS_CARDS[31] = new Card("SeaDragonPoint", "Easteros", "TheNorth", 1, "images/Cards/Easteros/SeaDragonPoint.png");
+EASTEROS_CARDS[32] = new Card("SharpPoint", "Easteros", "Crownlands", 1, "images/Cards/Easteros/SharpPoint.png");
+EASTEROS_CARDS[33] = new Card("SilverHill", "Easteros", "TheReach", 2, "images/Cards/Easteros/SilverHill.png");
+EASTEROS_CARDS[34] = new Card("Skagos", "Easteros", "TheNorth", 1, "images/Cards/Easteros/Skagos.png");
+EASTEROS_CARDS[35] = new Card("Skyreach", "Easteros", "Dorne", 1, "images/Cards/Easteros/Skyreach.png");
+EASTEROS_CARDS[36] = new Card("Starfall", "Easteros", "Dorne", 1, "images/Cards/Easteros/Starfall.png");
+EASTEROS_CARDS[37] = new Card("StoneySept", "Easteros", "Westerlands", 2, "images/Cards/Easteros/StoneySept.png");
+EASTEROS_CARDS[38] = new Card("StoneyShore", "Easteros", "TheNorth", 1, "images/Cards/Easteros/StoneyShore.png");
+EASTEROS_CARDS[39] = new Card("StormsEnd", "Easteros", "Stormlands", 2, "images/Cards/Easteros/StormsEnd.png");
+EASTEROS_CARDS[40] = new Card("Summerhall", "Easteros", "Stormlands", 2, "images/Cards/Easteros/Summerhall.png");
+EASTEROS_CARDS[41] = new Card("Sunspear", "Easteros", "Dorne", 2, "images/Cards/Easteros/Sunspear.png");
+EASTEROS_CARDS[42] = new Card("Tarth", "Easteros", "Stormlands", 1, "images/Cards/Easteros/Tarth.png");
+EASTEROS_CARDS[43] = new Card("TheArbor", "Easteros", "Dorne", 1, "images/Cards/Easteros/TheArbor.png");
+EASTEROS_CARDS[44] = new Card("TheBarrowlands", "Easteros", "TheNorth", 1, "images/Cards/Easteros/TheBarrowlands.png");
+EASTEROS_CARDS[45] = new Card("TheBoneway", "Easteros", "Dorne", 2, "images/Cards/Easteros/TheBoneway.png");
+EASTEROS_CARDS[46] = new Card("TheCrag", "Easteros", "Riverlands", 1, "images/Cards/Easteros/TheCrag.png");
+EASTEROS_CARDS[47] = new Card("TheEyrie", "Easteros", "TheVale", 2, "images/Cards/Easteros/TheEyrie.png");
+EASTEROS_CARDS[48] = new Card("TheFingers", "Easteros", "TheVale", 2, "images/Cards/Easteros/TheFingers.png");
+EASTEROS_CARDS[49] = new Card("TheGift", "Easteros", "TheNorth", 2, "images/Cards/Easteros/TheGift.png");
+EASTEROS_CARDS[50] = new Card("TheGreyCliffs", "Easteros", "TheNorth", 1, "images/Cards/Easteros/TheGreyCliffs.png");
+EASTEROS_CARDS[51] = new Card("TheMountainsOfTheMoon", "Easteros", "TheVale", 1, "images/Cards/Easteros/TheMountainsOfTheMoon.png");
+EASTEROS_CARDS[52] = new Card("TheNeck", "Easteros", "TheNorth", 2, "images/Cards/Easteros/TheNeck.png");
+EASTEROS_CARDS[53] = new Card("TheRills", "Easteros", "TheNorth", 1, "images/Cards/Easteros/TheRills.png");
+EASTEROS_CARDS[54] = new Card("TheTrident", "Easteros", "Riverlands", 1, "images/Cards/Easteros/TheTrident.png");
+EASTEROS_CARDS[55] = new Card("TheTwins", "Easteros", "Riverlands", 1, "images/Cards/Easteros/TheTwins.png");
+EASTEROS_CARDS[56] = new Card("TheWolfswood", "Easteros", "TheNorth", 2, "images/Cards/Easteros/TheWolfswood.png");
+EASTEROS_CARDS[57] = new Card("ThreeTowers", "Easteros", "Dorne", 2, "images/Cards/Easteros/ThreeTowers.png");
+EASTEROS_CARDS[58] = new Card("TorrhensSquare", "Easteros", "TheNorth", 2, "images/Cards/Easteros/TorrhensSquare.png");
+EASTEROS_CARDS[59] = new Card("Tumbleton", "Easteros", "Stormlands", 1, "images/Cards/Easteros/Tumbleton.png");
+EASTEROS_CARDS[60] = new Card("Uplands", "Easteros", "Dorne", 1, "images/Cards/Easteros/Uplands.png");
+EASTEROS_CARDS[61] = new Card("WestVale", "Easteros", "TheVale", 1, "images/Cards/Easteros/WestVale.png");
+EASTEROS_CARDS[62] = new Card("WhiteHarbor", "Easteros", "TheNorth", 2, "images/Cards/Easteros/WhiteHarbor.png");
+EASTEROS_CARDS[63] = new Card("WidowsWatch", "Easteros", "TheNorth", 1, "images/Cards/Easteros/WidowsWatch.png");
+EASTEROS_CARDS[64] = new Card("Winterfell", "Easteros", "TheNorth", 2, "images/Cards/Easteros/Winterfell.png");
+EASTEROS_CARDS[65] = new Card("Yronwood", "Easteros", "Dorne", 2, "images/Cards/Easteros/Yronwood.png");
 
 
 
