@@ -10,7 +10,11 @@
 	<script type="text/javascript" src="translationFunctions.js"></script>
 	
     <body>
-		<p id="p1">test</p>
+		<p id="p1">p1</p>
+		<p id="p2">p2</p>
+		<p id="p3">p3</p>
+		<p id="p4">p4</p>
+		<p id="p5">p5</p>
 	
 		<div id="cards">
 			<img src="../images/Cards/back.png" width="60" style="width:100;" onclick="test();"/>
@@ -68,6 +72,12 @@
 				console.log("region:   "+deck[i].region);
 				console.log("stars:    "+deck[i].stars);
 				console.log("filepath: "+deck[i].filepath);
+				document.getElementById('p1').innerHTML = 'id:			'+deck[i].id;
+				document.getElementById('p2').innerHTML = 'map:			'+deck[i].map;
+				document.getElementById('p3').innerHTML = 'region:		'+deck[i].region;
+				document.getElementById('p4').innerHTML = 'stars:		'+deck[i].stars;
+				document.getElementById('p5').innerHTML = 'filepath:	'+deck[i].filepath;
+				
 
 				i++;
 			
