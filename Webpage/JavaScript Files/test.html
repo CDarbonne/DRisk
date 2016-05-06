@@ -4,44 +4,35 @@
 	<head>
 		<title>Test</title>
 	</head>
-		
-	<!-- <script type="text/javascript" src="gamefunctions.js"></script> -->
-	<!-- <script type="text/javascript" src="test.js"></script> -->
+	
+	<script type="text/javascript" src="cards.js"></script>
+	<script type="text/javascript" src="deckFunctions.js"></script>
+	<script type="text/javascript" src="translationFunctions.js"></script>
+	
     <body>
-		<p id="demo"></p>
-		
-		<div id="card"></div>
-	<!--
+		<p id="demo" onclick="myFunction()" >Click Me!</p>
+	
+		<div id="cards"></div>
+	
 		<script>
 			
-			var num_of_players = 3;
-			var player = new Array();
-			
-			player_setup();
-			
-			function player_setup() {
-			
-				num_of_players = prompt("How many players?");
-			
-				// ask each player for name and color, and set initial troops (5 for now)
-				for (var i = 1; i <= num_of_players; i++)
-				{
-					player[i] = {name: '', color: '', troops: 5}
-					player[i].name = prompt("Enter your name, Player " + i, "Player" + i);
-					player[i].color = prompt("choose a color");
-				}
-			}
-			
-			// display info in html paragraph
-			document.getElementById("demo").innerHTML = "Number of Players:		" + num_of_players;
-			for (i = 1; i<= num_of_players; i++)
-			{
+			function myFunction() {
 				
+				var card = EASY_CARDS[0];
+				var div = document.getElementById('cards');
+				var currentCard = '<div id="'+card.id+'" class="moveContainer">';
+				
+				currentCard += '    <div class="cardContainer">';
+				currentCard += '      <div class="cardFront"><img src="'+card.path+'/'+card.name+'.png" /></div>';
+				currentCard += '      <div class="cardBack"><img src="../images/Cards/back.gif" /></div>';
+				currentCard += '    </div>';
+				currentCard += '</div>';
+			
 			}
-		
+			
+			
 		</script>
-	-->
+	
     </body>
 
-	<script type="text/javascript" src="test.js"></script>
 </html>
