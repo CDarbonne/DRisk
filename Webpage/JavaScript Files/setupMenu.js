@@ -60,7 +60,7 @@ function adjustMenu() {
 			newMenu +="	<p><br><br>";
 	        newMenu +="    Player " + i;
 	        newMenu +="    Team Color:";
-	        newMenu +="    <select id = \"teamColor\" required>";
+	        newMenu +="    <select id = \"teamColor" + i + "\" >";
 	        newMenu +="      <option value=\"Team Color\">----------------</option>";
 	        newMenu +="      <option value=\"Red\">Red</option>";
 	        newMenu +="      <option value=\"Green\">Green</option>";
@@ -69,13 +69,13 @@ function adjustMenu() {
 	        newMenu +="       <option value=\"Yellow\">Yellow</option>";
 	        newMenu +="    </select>";
 	        newMenu +=" </p><p>";
-	        newMenu +="    Team Name: <input type = \"text\" name = \"TeamName\" id = \"TeamName\">";
+	        newMenu +="    Team Name: <input type = \"text\" name = \"TeamName\" id = \"TeamName" + i + "\">";
 	        newMenu +=" </p><p>";
 	        
 
 	        
 
-			console.log("got here");
+			//console.log("got here");
 		}
 
 		
@@ -101,39 +101,47 @@ startBtn.onclick = function() {
 
 	//Get the values chosen for game setup
 	var numPlayerSelect = document.getElementById("numPlayers");
-	var teamColorSelect = document.getElementById("teamColor");
-	var teamName = document.getElementById("TeamName");
 	var mapSelect = document.getElementById("mapSelect");
+	
+	for (var i = 1; i <= numPlayerSelect.value; i++) {
 
-	if (numPlayerSelect.value == "Number of Players" || teamColorSelect.value == "Team Color" || teamName.value == "" || mapSelect.value == "Map") {
-		window.alert("Please fill in all available fields!");
-		console.log("Users are dumb...")
+		var teamColorSelect = document.getElementById("teamColor" + i);
+		var teamName = document.getElementById("TeamName" + i);
+
+		if (numPlayerSelect.value == "Number of Players" || teamColorSelect.value == "Team Color" || teamName.value == "" || mapSelect.value == "Map") {
+				window.alert("Please fill in all available fields!");
+				console.log("Users are dumb...");
+				break;
+		}
+
+		else {
+			localStorage.setItem('teamColor' + i, JSON.stringify(teamColorSelect.value));
+	    	localStorage.setItem('teamName' + i, JSON.stringify(teamName.value));
+		}
+
 	}
-
-	else {
-		
+		/*
 		//Erase all previously saved values
 		localStorage.setItem('numPlayers', JSON.stringify(0));
 		localStorage.setItem('teamColor', JSON.stringify(0));
 		localStorage.setItem('teamName', JSON.stringify(0));
 		localStorage.setItem('mapSelect', JSON.stringify(0));
+		*/
 
 		//Save new values for setup
 	    localStorage.setItem('numPlayers', JSON.stringify(numPlayerSelect.value));
-	    localStorage.setItem('teamColor', JSON.stringify(teamColorSelect.value));
-	    localStorage.setItem('teamName', JSON.stringify(teamName.value));
 	    localStorage.setItem('mapSelect', JSON.stringify(mapSelect.value));
 
+/*
 	    //Test values recieved
 		console.log(numPlayerSelect.value);
 		console.log(teamColorSelect.value);
 		console.log(mapSelect.value);
 		console.log(teamName.value);
-
+*/
 		//Load game page
 		window.location.href = 'Maps/'+mapSelect.value+'Map.html';
-	}
-               
+	               
 }
 
 
