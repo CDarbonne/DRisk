@@ -1,8 +1,6 @@
-/*============================= GLOBAL VARIABLES ==============================*/
+/*============================= GLOBAL VARIABLES/LOCAL STORAGE ==============================*/
 
 var player = [];
-
-/*=============================LOCAL STORAGE==================================*/
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
@@ -20,28 +18,36 @@ for (var i = 1; i <= numPlayers; i++) {
 	};
 }
 
+/*//TEST FOR PLAYER CONSTRUCTOR
 for (var i = 1; i <= numPlayers; i++) {
 
 	console.log(player[i]);
 }
 
+var mapArray = [];
 
-/* //TESTING FOR LOCAL STORAGE
-console.log("testing");
-console.log(numPlayers);	
-console.log(teamColor);
-console.log(teamName);
-console.log(mapSelect);	
-*/
-
- /*
-players[0] = {name: teamName, color: teamColor, turn: 0};
-players[1] = {name: "chris", color: "blue", turn: 1};
-
-console.log(players[0].name + " " + players[0].color + " " + players[0].turn);
-console.log(players[1].name + " " + players[1].color + " " + players[1].turn);
-*/
-
+switch(mapSelect) {
+    case "Easy":
+        mapArray = EASY_CARDS;
+        break;
+    case "Medium":
+        mapArray = MEDIUM_CARDS;
+        break;
+    case "Hard":
+        mapArray = HARD_CARDS;
+        break;
+    case "US":
+        mapArray = USA_CARDS;
+        break;
+    case "Khorvaire":
+        mapArray = KHORVAIRE_CARDS;
+        break;
+    case "Easteros":
+        mapArray = EASTEROS_CARDS;
+        break;
+    default:
+        window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
+}
 
 
 /*======================== AMMAP MAP CREATION FUNCTION ========================*/
@@ -167,22 +173,22 @@ map.addListener("clickMapObject", function (event) {
 
 	selectedColor.colorReal = selectedColor.color;
 	//map.returnInitialColor(selectedColor);
-if (yourTurn == 1) {
-	if (attackBool == 0)
-	{
-		attacker = selectedArea;
-		console.log(attacker);
-		attackBool++;
-	}
+	if (yourTurn == 1) {
+		if (attackBool == 0)
+		{
+			attacker = selectedArea;
+			console.log(attacker);
+			attackBool++;
+		}
 
-	else if (attackBool == 1)
-	{
-		defender = selectedArea;
-		console.log(defender);
-		attack(attacker, defender);
-		attackBool = 0;
+		else if (attackBool == 1)
+		{
+			defender = selectedArea;
+			console.log(defender);
+			attack(attacker, defender);
+			attackBool = 0;
+		}
 	}
-}
 });//listener function
 
 });//ammap ready function

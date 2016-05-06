@@ -57,8 +57,8 @@ function adjustMenu() {
 
 		for (var i = 1; i <= numPlayerSelect.value; i++) {
 
-			newMenu +="	<p><br><br>";
-	        newMenu +="    Player " + i;
+			newMenu +="	<p>";
+	        newMenu +="<h4>Player " + i + "</h4>";
 	        newMenu +="    Team Color:";
 	        newMenu +="    <select id = \"teamColor" + i + "\" >";
 	        newMenu +="      <option value=\"Team Color\">----------------</option>";
@@ -79,7 +79,7 @@ function adjustMenu() {
 		}
 
 		
-        newMenu +=" <p>";
+        newMenu +=" <p><br>";
         newMenu +="    Map:";
         newMenu +="    <select id = \"mapSelect\" required>";
         newMenu +="       <option value=\"Map\">----------------</option>";
