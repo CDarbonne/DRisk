@@ -1,6 +1,6 @@
 /*============================= GLOBAL VARIABLES/LOCAL STORAGE ==============================*/
 
-var player = [];
+var PLAYER = [];
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
@@ -11,18 +11,19 @@ for (var i = 1; i <= numPlayers; i++) {
 	var teamColor = JSON.parse(localStorage.getItem('teamColor' + i));
 	var teamName = JSON.parse(localStorage.getItem('teamName' + i));
 
-	player[i] = {
+	PLAYER[i] = {
 		name: teamName,
 		color: teamColor,
 		turn: 0
 	};
 }
 
-/*//TEST FOR PLAYER CONSTRUCTOR
+//TEST FOR PLAYER CONSTRUCTOR
 for (var i = 1; i <= numPlayers; i++) {
 
-	console.log(player[i]);
+	console.log(PLAYER[i]);
 }
+
 
 var mapArray = [];
 
@@ -46,8 +47,9 @@ switch(mapSelect) {
         mapArray = EASTEROS_CARDS;
         break;
     default:
-        window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
+        window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT, BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
 }
+
 
 
 /*======================== AMMAP MAP CREATION FUNCTION ========================*/
@@ -108,34 +110,16 @@ switch(mapSelect) {
 			    // write the map to container div
 			    map.write("mapdiv");
                            
-                           
-						   //This is the function that changes color of the individual
-						   //areas
-                           function test() {
-                            // generate random color
-                            //var color = Math.floor( Math.random() * 0xffffff );
-    
-                            // update US color in data
-                            var area = map.getObjectById("Winterfell");
-                            area.color = '#5e3513';
-                            area.colorReal = area.color;
-    
-                            // make the chart take in new color
-                            //map.returnInitialColor(area);
-							}
-
-
-
-
 
 /*============================= COLOR CHANGING FUNCTIONS ==========================*/
 
 //This is the function that changes color of the individual areas
-function changeColor(id) {
+function changeColor(id, color) {
 
 	
 	this.id = id;
-	console.log(id);
+	this.color = color;
+	//console.log(id);
 
 	/*PHP to get the army color based on playerID
 	*/
@@ -147,13 +131,68 @@ function changeColor(id) {
 
 	// update US color in data
 	var area = map.getObjectById(id);
-	area.color = '#5e3513';
+	console.log(area);
+	area.color = color;
 	area.colorReal = area.color;
     
 	// make the chart take in new color
 	//map.returnInitialColor(area);
 }
 
+
+/*======================== REGION ASSIGNMENT ========================*/
+
+
+var mapArrayLength = mapArray.length;
+var regionAssignArray = [];
+/*
+for (var i = 0; i < mapArrayLength; i++)
+{
+	regionAssignArray[i] = i;
+}
+*/
+
+shuffle(mapArray); //Shuffles the array of regions for random region assignment
+var regionsPerPlayer = (mapArrayLength / numPlayers); //Variable to define the number of regions per player. the last player will recieve any leftover regions
+var arrayCounter = 0; //Used to iterate through the region array
+console.log(regionsPerPlayer);
+var i;
+for (i = 1; i <= numPlayers; i++) {
+
+	console.log("PLAYER " + i);
+	for (var x = 1; x <= regionsPerPlayer; x++, arrayCounter++) {
+		console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i].color);
+		changeColor(mapArray[arrayCounter].id, PLAYER[i].color);
+	}
+}
+
+if (arrayCounter != mapArrayLength) {
+	for (var x = arrayCounter; x < mapArrayLength; x++, arrayCounter++) {
+		console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i-1].color);
+		changeColor(mapArray[arrayCounter].id, PLAYER[i-1].color);
+	}
+}
+    map.write("mapdiv");
+
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 
 /*============================== ONCLICK FUNCTIONS ==================================*/
