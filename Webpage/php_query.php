@@ -6,8 +6,8 @@ at run time in the PHP code.*/
 
 $servername = "localhost";
 $username = "root";
-$password = "";
-$database = "riskplayers";
+$password = "root";
+$database = "dbtest";
         
 $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -45,7 +45,7 @@ $heldCards ="Louisiana, Texas";
 
 //Inserting the player information into the database
 
-$sql = "INSERT INTO playerinfo (`playerHandle`, `armyColor`, `playerEmail`, `numTroops`, `heldCards`) "
+$sql = "INSERT INTO riskplayers (`playerHandle`, `armyColor`, `playerEmail`, `numTroops`, `heldCards`) "
         . "VALUES ('$playerID', '$armyColor', '$playerEmail', '$numTroops', '$heldCards')";
 
 if ($conn->query($sql) === TRUE) {
@@ -54,7 +54,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$handle = mysql_query('SELECT playerHandle FROM playerinfo WHERE amryColor =Blue');
+$handle = mysql_query('SELECT playerHandle FROM riskplayers WHERE amryColor =Blue');
 $row = mysql_fetch_row($handle);
 echo $img[0];
 

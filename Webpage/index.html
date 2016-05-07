@@ -46,7 +46,7 @@
    
    <li class='has-sub'><a href='#'><span>Account</span></a>
       <ul>
-         <li><a href = '../PHP_Stuff/index.php'><span>Log In</span></a></li>
+         <li><a href = 'http://localhost/DRisk/PHP_Stuff/index.php'><span>Log In</span></a></li>
       </ul>
    </li>
 </ul>
@@ -105,6 +105,48 @@
    </div>
 </div>
 
+<div id = "LeaderboardModal" class = "modal">
+   <div class = "modalContent">
+      <div class = "header" id = "LeaderboardHeader">
+         <span class = "closeModal">x</span>
+         <h2>Leaderboard</h2>
+      </div>
+      <div class = "body" id = "LeaderboardBody">
+        
+ </script>
+         
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "dbtest";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT user_id, wins,losts, user_name FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+     // output data of each row
+     while($row = $result->fetch_assoc()) {
+         echo "<br> user_id: ". $row["user_id"].  "- wins  " . $row["wins"] . "   -lost  " . $row["losts"] ." - name: ". $row["user_name"].  "<br>";
+     }
+} else {
+     echo "0 results";
+}
+
+$conn->close();
+?>  
+
+      </div>
+   </div>
+</div>
+
 <div id = "ContactModal" class = "modal">
    <div class = "modalContent">
       <div class = "header" id = "ContactHeader">
@@ -119,7 +161,7 @@
             Chris Darbonne (Team Lead)<br>
             email: msu-cdarbonne1@student.mcneese.edu<br><br>
             Bassem <br>
-            email: <br><br>
+            email: msu-bkhabiry@student.mcneese.edu<br><br>
             Cameron Tooke<br>
             email: <br><br>
             Jonathon White<br>
@@ -127,6 +169,30 @@
       </div>
    </div>
 </div>
+
+
+<div id = "GameRulesModal" class = "modal">
+   <div class = "modalContent">
+      <div class = "header" id = "GameRulesHeader">
+         <span class = "closeModal">x</span>
+         <h2>Game Rules</h2>
+      </div>
+      <div class = "body" id = "GameRulesBody">
+         <p>
+           
+            Risk is a turn-based game for two to six players.
+             The standard version is played on a board depicting 
+             a political map of the Earth, divided into forty-two 
+             territories, which are grouped into six continents.
+             The object of the game is to occupy every territory 
+             on the board and in doing so, eliminate the other players.<br>
+        
+      </div>
+   </div>
+</div>
+
+
+
 
 <script src="JavaScript Files/setupMenu.js"></script>
 <script src="JavaScript Files/infoBoxes.js"></script>

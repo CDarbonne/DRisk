@@ -42,8 +42,7 @@
          </li>
         
          <li class='last'>
-            <a href='#'>
-               <span>Leaderboard</span>
+            <a href='select.php'><span>Leaderboard</span>
             </a>
          </li>
       </ul>
