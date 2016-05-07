@@ -20,7 +20,7 @@ function initializeDeck(deck) {
   deck = createDeck(deck);
   deck = shuffleDeck(deck);
   return deck;
-
+}
 
 function shuffleDeck(deck) {
   var shuffledDeck = [];
@@ -251,3 +251,6 @@ EASTEROS_CARDS[62] = new Card("WhiteHarbor", "Easteros", "TheNorth", 2, "images/
 EASTEROS_CARDS[63] = new Card("WidowsWatch", "Easteros", "TheNorth", 1, "images/Cards/Easteros/WidowsWatch.png");
 EASTEROS_CARDS[64] = new Card("Winterfell", "Easteros", "TheNorth", 2, "images/Cards/Easteros/Winterfell.png");
 EASTEROS_CARDS[65] = new Card("Yronwood", "Easteros", "Dorne", 2, "images/Cards/Easteros/Yronwood.png");
+
+
+
