@@ -87,8 +87,13 @@ for (var i = 1; i <= numPlayers; i++) {
 
 			    // write the map to container div
 			    map.write("mapdiv");
-                           
-
+                      
+function testDataprovider() {
+	console.log("We got here boys");
+	dataProvider.getAreasFromMap = false;
+	map.dataProvider = dataProvider;
+	map.write("mapdiv");
+}
 /*============================= COLOR CHANGING FUNCTION ==========================*/
 
 //This is the function that changes color of the individual areas
@@ -115,25 +120,56 @@ function changeColor(id, color) {
 /*======================== REGION ASSIGNMENT ========================*/
 
 var mapArray = [];
+var mapVar;
 
 switch(mapSelect) {
     case "Easy":
-        mapArray = EASY_CARDS;
+        for (var i = 0; i < 12; i++) {
+		    mapArray[i] = {
+		    	id: EASY_CARDS[i].id,
+		    	region: EASY_CARDS[i].region
+		    };
+		}
         break;
     case "Medium":
-        mapArray = MEDIUM_CARDS;
+        for (var i = 0; i < 21; i++) {
+		    mapArray[i] = {
+		    	id: MEDIUM_CARDS[i].id,
+		    	region: MEDIUM_CARDS[i].region
+		    };
+		}
         break;
     case "Hard":
-        mapArray = HARD_CARDS;
+        for (var i = 0; i < 42; i++) {
+		    mapArray[i] = {
+		    	id: HARD_CARDS[i].id,
+		    	region: HARD_CARDS[i].region
+		    };
+		}
         break;
     case "US":
-        mapArray = USA_CARDS;
+        for (var i = 0; i < 48; i++) {
+		    mapArray[i] = {
+		    	id: USA_CARDS[i].id,
+		    	region: USA_CARDS[i].region
+		    };
+		}
         break;
     case "Khorvaire":
-        mapArray = KHORVAIRE_CARDS;
+        for (var i = 0; i < 16; i++) {
+		    mapArray[i] = {
+		    	id: KHORVAIRE_CARDS[i].id,
+		    	region: KHORVAIRE_CARDS[i].region
+		    };
+		}
         break;
     case "Easteros":
-        mapArray = EASTEROS_CARDS;
+    	for (var i = 0; i < 66; i++) {
+		    mapArray[i] = {
+		    	id: EASTEROS_CARDS[i].id,
+		    	region: EASTEROS_CARDS[i].region
+		    };
+		}
         break;
     default:
         window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT, BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
@@ -152,19 +188,21 @@ var arrayCounter = 0; //Used to iterate through the region array
 
 for (var i = 0; i < numPlayers; i++) {
 
-	//console.log("PLAYER " + i);
+	console.log("PLAYER " + i);
 	for (var x = 1; x <= regionsPerPlayer; x++, arrayCounter++) {
-		//console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i].color);
+		console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i].color);
 		changeColor(mapArray[arrayCounter].id, PLAYER[i].color);
 	}
 }
 
 if (arrayCounter != mapArrayLength) { //If there are any remaining unassigned territories due to uneven division, the last player gets them to balance the disadvantage of going last
 	for (var x = arrayCounter; x < mapArrayLength; x++, arrayCounter++) {
-		//console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[numPlayers - 1].color);
+		console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[numPlayers - 1].color);
 		changeColor(mapArray[arrayCounter].id, PLAYER[numPlayers - 1].color);
 	}
 }
+
+console.log(mapArray);
 
 map.write("mapdiv"); //Update the map with the changes
 GAMESETUP = false; //Set to false so that all subsequent color changes will be automatically updated by the changeColor() function
@@ -181,15 +219,16 @@ var attackBool = 0;
 
 map.addListener("clickMapObject", function (event) {
 						
-	
+	//testDataprovider();
 	var selectedArea = event.mapObject.id;
 	var selectedColor = selectedArea;
-	console.log("selected area: " + selectedArea);
+	console.log("selected area: " + selectedArea + " color: " + selectedArea.color);
 	//changeColor(selectedArea);
 	//test();
 
 	selectedColor.colorReal = selectedColor.color;
 	//map.returnInitialColor(selectedColor);
+	
 	if (yourTurn == 1) {
 		if (attackBool == 0)
 		{
