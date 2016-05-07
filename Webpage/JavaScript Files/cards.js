@@ -20,8 +20,20 @@ function initializeDeck(deck) {
   deck = createDeck(deck);
   deck = shuffleDeck(deck);
   return deck;
-}
 
+
+function shuffleDeck(deck) {
+  var shuffledDeck = [];
+  var n = deck.length;
+  var i;
+
+  while(n) {
+    i = Math.floor(Math.random() * n--);
+    shuffledDeck.push(deck.splice(i, 1)[0]);
+  }
+
+  return shuffledDeck;
+}
 
 // create EASY map cards (12 territories):
 EASY_CARDS[0] = new Card("Australia", "Easy", "Australia", 1, "images/Cards/Easy/Australia.png");
@@ -239,32 +251,3 @@ EASTEROS_CARDS[62] = new Card("WhiteHarbor", "Easteros", "TheNorth", 2, "images/
 EASTEROS_CARDS[63] = new Card("WidowsWatch", "Easteros", "TheNorth", 1, "images/Cards/Easteros/WidowsWatch.png");
 EASTEROS_CARDS[64] = new Card("Winterfell", "Easteros", "TheNorth", 2, "images/Cards/Easteros/Winterfell.png");
 EASTEROS_CARDS[65] = new Card("Yronwood", "Easteros", "Dorne", 2, "images/Cards/Easteros/Yronwood.png");
-
-
-function shuffleDeck(deck) {
-  var shuffledDeck = [];
-  var n = deck.length;
-  var i;
-
-  while(n) {
-    i = Math.floor(Math.random() * n--);
-    shuffledDeck.push(deck.splice(i, 1)[0]);
-  }
-
-  return shuffledDeck;
-}
-
-
-var i; // counter variable
-
-
-// card constructor
-var card = {
-	
-	id: "id",
-	name: "card",
-	region: "region",
-	stars: 1,
-	filepath: "filepath"
-	
-};
