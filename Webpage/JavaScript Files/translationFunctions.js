@@ -1,6 +1,6 @@
 function moveCardOverTime(card, xPos, yPos, time) {
   // m = moveContainer
-  var m = document.getElementById(''+card.suit+card.num);
+  var m = document.getElementById(''+card.id);
 
   m.style.transition = 'all '+time+'ms';
   m.style.transform = 'translate('+xPos+'px,'+yPos+'px)';
@@ -24,13 +24,20 @@ function flipCardOverTime(card, time) {
 function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
   var cardDistributerCounter = 0;
 
+  /*
   var cardDistributerInterval = setInterval(function() {
     moveCardOverTime(cardArray[cardDistributerCounter],
       coordinatesArray[cardDistributerCounter][0],
       coordinatesArray[cardDistributerCounter][1],
       moveTime);
+*/
 
-
+	var cardDistributerInterval = setInterval(function() {
+    moveCardOverTime(cardArray[cardDistributerCounter],
+      10,
+      10,
+      moveTime);
+	
     cardDistributerCounter++;
     if(cardDistributerCounter === cardArray.length) {
       clearInterval(cardDistributerInterval);

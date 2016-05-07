@@ -1,89 +1,156 @@
-<!-- test.html -->
-
 <html>
-	<head>
-		<title>Test</title>
-	</head>
-	
-	<script type="text/javascript" src="cards.js"></script>
-	<script type="text/javascript" src="deckFunctions.js"></script>
-	<script type="text/javascript" src="translationFunctions.js"></script>
-	
-    <body>
-		<p id="p1">p1</p>
-		<p id="p2">p2</p>
-		<p id="p3">p3</p>
-		<p id="p4">p4</p>
-		<p id="p5">p5</p>
-	
-		<div id="cards">
-			<img src="../images/Cards/back.png" width="60" style="width:100;" onclick="test();"/>
-		</div>
-	
-		<script>
-			
-			var i = 0;
-			/*
-			function displayDeck(deck, id) {
-				var div = document.getElementById(id);
-				var functionNumber;
+<style>
+#table {
+  background-color: green;
+//  margin: 0px auto;
+  height: 600px;
+  width: 1000px;
+}
+#card {
+  transform: translate(0,0);
+  transition: transform 250ms;
+  width: 71px;
+  height: 96px;
+}
+#card.move {
+  transform: translate(0px, 0px);
+}
+</style>
+<body>
 
-				if(deck.length == 28) functionNumber = 0;
-				if(deck.length == 1) functionNumber = 1;
-				if(deck.length == 52-29) functionNumber = 2;
-				var count = 0;
-				deck.forEach(function(e) {
+<div id="table">
+  <div id="cards">
+    <!-- <img src="../images/Cards/Back.png" width="100"/> -->
+  </div>
+</div>
 
-					var currentCard = '<div id="'+EASY_CARDS[0].id+'" class="moveContainer" onmousedown="generalFunction('+functionNumber+', this);">';
-					currentCard += '    <div class="cardContainer">';
-					currentCard += '      <div class="cardFront"><img src="cards/'+e.suit+e.num+'.gif" /></div>';
-					currentCard += '      <div class="cardBack"><img src="cards/back.gif" /></div>';
-					currentCard += '    </div>';
-					currentCard += '</div>';
+<script type="text/javascript" src="cards.js"></script>
+<script type="text/javascript" src="deckFunctions.js"></script>
+<script type="text/javascript" src="translationFunctions.js"></script>
 
-					if (count == 0) {
-						div.innerHTML = currentCard;
-					}
-					else {
-						div.innerHTML = div.innerHTML + currentCard;
-					}
-					count++;
-					});
-			*/
-			
-			function test() {
-			
-				testDeck(USA_CARDS);
+<script>
 
-			}
-			
-			// for testing purposes (displays cards and attributes)
-			function testDeck() {
-			
-				var deck = KHORVAIRE_CARDS;
-			
-				if (i > deck.length) i = 0;
-			
-				var div = document.getElementById('cards');
+var deck1 = HARD_CARDS;
+
+var INIT_X_POS = 10; // initial X position
+var INIT_Y_POS = 10; // initial Y position
+var MOVE_TIME = 300;
+var DEAL_TIME = 50;
+
+var handCoordinates = [];
+
+buildCoordinateArray(deck1);
+displayDeck(deck1, 'cards');
+dealDeck(deck1, handCoordinates, MOVE_TIME, DEAL_TIME);
+moveCardOnClick();
+
+function generalFunction() {
+
+}
+
+function buildCoordinateArray(deck) {
 	
-				div.innerHTML = '<img src="../'+deck[i].filepath+'" width="60" style="width:100;" onclick="testDeck();"/>'
-				console.log("id:       "+deck[i].id);
-				console.log("map:      "+deck[i].map);
-				console.log("region:   "+deck[i].region);
-				console.log("stars:    "+deck[i].stars);
-				console.log("filepath: "+deck[i].filepath);
-				document.getElementById('p1').innerHTML = 'id:			'+deck[i].id;
-				document.getElementById('p2').innerHTML = 'map:			'+deck[i].map;
-				document.getElementById('p3').innerHTML = 'region:		'+deck[i].region;
-				document.getElementById('p4').innerHTML = 'stars:		'+deck[i].stars;
-				document.getElementById('p5').innerHTML = 'filepath:	'+deck[i].filepath;
+	var i;
+	var offset = 50 // x position separation value
+	
+	for (i = 0; i < deck.length; i++)
+	{
+		handCoordinates.push( [(50), (200)] ); // push next card position coordinate to array
+		offset += 50;
+	}
+	
+}
+
+
+function displayDeck(deck, id) {
+	var div = document.getElementById(id);
+	var i;
+	var xPosition = 0;
+	var yPosition = 0;
+	var count = 0;
+	deck.forEach(function(e) {
+
+		var currentCard = '<div id="'+e.id+'" class="moveContainer" onmousedown="generalFunction();">';
+		currentCard += '  <div class="flipContainer">';
+		currentCard += '    <div class="cardContainer">';
+		currentCard += '      <div class="cardFront"><img src="../images/Cards/'+e.map+'/'+e.id+'.png" width="50"/></div>';
+		currentCard += '      <div class="cardBack"><img src="../images/Cards/back.png" width="50"/></div>';
+		currentCard += '    </div>';
+		currentCard += '  </div>';
+		currentCard += '</div>';
+
+		if (count == 0) {
+			div.innerHTML = currentCard;
+		}
+		else {
+			div.innerHTML = div.innerHTML + currentCard;
+		}
+		count++;
+	});
+}
+
+function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
+  var cardDistributerCounter = 0;
+
+  var cardDistributerInterval = setInterval(function() {
+    moveCardOverTime(cardArray[cardDistributerCounter],
+      coordinatesArray[cardDistributerCounter][0],
+      coordinatesArray[cardDistributerCounter][1],
+      moveTime);
+
+
+    cardDistributerCounter++;
+    if(cardDistributerCounter === cardArray.length) {
+      clearInterval(cardDistributerInterval);
+    }
+  }, intervalTime);
+}
+
+function moveCardOnClick() {
+	document.getElementById("table").addEventListener("click", function(e){
+		var xPosition = e.clientX;
+		var yPosition = e.clientY;
+		var table = document.getElementById("table");
+		/* Does not work in Firefox */
+		/*
+		var tableMarginLeft = table.currentStyle || window.getComputedStyle(table).marginLeft;
+		var tableMarginTop =  table.currentStyle || window.getComputedStyle(table).marginTop;
+		tableMarginLeft = parseInt(tableMarginLeft);
+		tableMarginTop = parseInt(tableMarginTop);
+		xPosition -= tableMarginLeft;
+		yPosition -= tableMarginTop;
+		*/
+		var card = document.getElementById("card");
+		card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
+		card.classList.toggle('move');  
+	});
+}
+
+// for testing purposes (displays cards and attributes)
+function testDeck() {
+			
+	var deck = KHORVAIRE_CARDS;
+			
+	if (i > deck.length) i = 0;
+			
+	var div = document.getElementById('cards');
+	
+	div.innerHTML = '<img src="../'+deck[i].filepath+'" width="60" style="width:100;" onclick="testDeck();"/>'
+	console.log("id:       "+deck[i].id);
+	console.log("map:      "+deck[i].map);
+	console.log("region:   "+deck[i].region);
+	console.log("stars:    "+deck[i].stars);
+	console.log("filepath: "+deck[i].filepath);
+	document.getElementById('p1').innerHTML = 'id:			'+deck[i].id;
+	document.getElementById('p2').innerHTML = 'map:			'+deck[i].map;
+	document.getElementById('p3').innerHTML = 'region:		'+deck[i].region;
+	document.getElementById('p4').innerHTML = 'stars:		'+deck[i].stars;
+	document.getElementById('p5').innerHTML = 'filepath:	'+deck[i].filepath;
 				
-				i++;
+	i++;
 			
-			}
-			
-		</script>
-	
-    </body>
+}
 
+</script>
+</body>
 </html>
