@@ -20,7 +20,7 @@ function initializeDeck(deck) {
   deck = createDeck(deck);
   deck = shuffleDeck(deck);
   return deck;
-
+}
 
 function shuffleDeck(deck) {
   var shuffledDeck = [];
