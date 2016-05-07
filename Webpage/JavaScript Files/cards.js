@@ -69,7 +69,7 @@ HARD_CARDS[4] = new Card("Brazil", "Hard", "SouthAmerica", 1, "images/Cards/Hard
 HARD_CARDS[5] = new Card("CentralAmerica", "Hard", "NorthAmerica", 1, "images/Cards/Hard/CentralAmerica.png");
 HARD_CARDS[6] = new Card("China", "Hard", "Asia", 1, "images/Cards/Hard/China.png");
 HARD_CARDS[7] = new Card("Congo", "Hard", "Africa", 2, "images/Cards/Hard/Congo.png");
-HARD_CARDS[8] = new Card("EasternAfrica", "Hard", "Africa", 1, "images/Cards/Hard/EasternAfrica.png");
+HARD_CARDS[8] = new Card("EastAfrica", "Hard", "Africa", 1, "images/Cards/Hard/EastAfrica.png");
 HARD_CARDS[9] = new Card("EasternAustralia", "Hard", "Australia", 2, "images/Cards/Hard/EasternAustralia.png");
 HARD_CARDS[10] = new Card("EasternUnitedStates", "Hard", "NorthAmerica", 1, "images/Cards/Hard/EasternUnitedStates.png");
 HARD_CARDS[11] = new Card("Egypt", "Hard", "Africa", 1, "images/Cards/Hard/Egypt.png");
@@ -99,8 +99,8 @@ HARD_CARDS[34] = new Card("SouthernEurope", "Hard", "Europe", 1, "images/Cards/H
 HARD_CARDS[35] = new Card("Ukraine", "Hard", "Europe", 1, "images/Cards/Hard/Ukraine.png");
 HARD_CARDS[36] = new Card("Ural", "Hard", "Asia", 2, "images/Cards/Hard/Ural.png");
 HARD_CARDS[37] = new Card("Venezuela", "Hard", "SouthAmerica", 2, "images/Cards/Hard/Venezuela.png");
-HARD_CARDS[38] = new Card("WesternAustralia", "Hard", "Australia", 2, "images/Cards/Hard/WesternAustralia.png");
-HARD_CARDS[39] = new Card("WesternEurope", "Hard", "Europe", 1, "images/Cards/Hard/WesternEurope.png");
+HARD_CARDS[38] = new Card("WesternAustralia", "Hard", "Australia", 1, "images/Cards/Hard/WesternAustralia.png");
+HARD_CARDS[39] = new Card("WesternEurope", "Hard", "Europe", 2, "images/Cards/Hard/WesternEurope.png");
 HARD_CARDS[40] = new Card("WesternUnitedStates", "Hard", "NorthAmerica", 1, "images/Cards/Hard/WesternUnitedStates.png");
 HARD_CARDS[41] = new Card("Yakutsk", "Hard", "Asia", 2, "images/Cards/Hard/Yakutsk.png");
 
@@ -121,6 +121,58 @@ KHORVAIRE_CARDS[12] = new Card("TalentaPlains", "Khorvaire", "EasternKhorvaire",
 KHORVAIRE_CARDS[13] = new Card("Thrane", "Khorvaire", "CentralKhorvaire", 2, "images/Cards/Khorvaire/Thrane.png");
 KHORVAIRE_CARDS[14] = new Card("Valenar", "Khorvaire", "EasternKhorvaire", 1, "images/Cards/Khorvaire/Valenar.png");
 KHORVAIRE_CARDS[15] = new Card("Zilargo", "Khorvaire", "CentralKhorvaire", 1, "images/Cards/Khorvaire/Zilargo.png");
+
+// create USA map cards (48 territories):
+USA_CARDS[0] = new Card("Alabama", "USA", "South", 1, "images/Cards/USA/Alabama.png");
+USA_CARDS[1] = new Card("Arizona", "USA", "Southwest", 1, "images/Cards/USA/Arizona.png");
+USA_CARDS[2] = new Card("Akansas", "USA", "South", 1, "images/Cards/USA/Akansas.png");
+USA_CARDS[3] = new Card("California", "USA", "West", 2, "images/Cards/USA/California.png");
+USA_CARDS[4] = new Card("Colorado", "USA", "West", 1, "images/Cards/USA/Colorado.png");
+USA_CARDS[5] = new Card("Connecticut", "USA", "NewEngland", 1, "images/Cards/USA/Connecticut.png");
+USA_CARDS[6] = new Card("Delaware", "USA", "MidAtlantic", 1, "images/Cards/USA/Delaware.png");
+USA_CARDS[7] = new Card("Florida", "USA", "South", 2, "images/Cards/USA/Florida.png");
+USA_CARDS[8] = new Card("Georgia", "USA", "South", 1, "images/Cards/USA/Georgia.png");
+USA_CARDS[9] = new Card("Idaho", "USA", "West", 1, "images/Cards/USA/Idaho.png");
+USA_CARDS[10] = new Card("Illinois", "USA", "MidWest", 1, "images/Cards/USA/Illinois.png");
+USA_CARDS[11] = new Card("Indiana", "USA", "MidWest", 1, "images/Cards/USA/Indiana.png");
+USA_CARDS[12] = new Card("Iowa", "USA", "MidWest", 1, "images/Cards/USA/Iowa.png");
+USA_CARDS[13] = new Card("Kansas", "USA", "MidWest", 2, "images/Cards/USA/Kansas.png");
+USA_CARDS[14] = new Card("Kentucky", "USA", "South", 1, "images/Cards/USA/Kentucky.png");
+USA_CARDS[15] = new Card("Louisiana", "USA", "South", 2, "images/Cards/USA/Louisiana.png");
+USA_CARDS[16] = new Card("Maine", "USA", "NewEngland", 1, "images/Cards/USA/Maine.png");
+USA_CARDS[17] = new Card("Maryland", "USA", "MidAtlantic", 1, "images/Cards/USA/Maryland.png");
+USA_CARDS[18] = new Card("Massachusetts", "USA", "NewEngland", 2, "images/Cards/USA/Massachusetts.png");
+USA_CARDS[19] = new Card("Michigan", "USA", "MidWest", 2, "images/Cards/USA/Michigan.png");
+USA_CARDS[20] = new Card("Minnesota", "USA", "MidWest", 1, "images/Cards/USA/Minnesota.png");
+USA_CARDS[21] = new Card("Mississippi", "USA", "South", 1, "images/Cards/USA/Mississippi.png");
+USA_CARDS[22] = new Card("Missouri", "USA", "MidWest", 2, "images/Cards/USA/Missouri.png");
+USA_CARDS[23] = new Card("Montana", "USA", "West", 2, "images/Cards/USA/Montana.png");
+USA_CARDS[24] = new Card("Nebraska", "USA", "MidWest", 1, "images/Cards/USA/Nebraska.png");
+USA_CARDS[25] = new Card("Nevada", "USA", "West", 1, "images/Cards/USA/Nevada.png");
+USA_CARDS[26] = new Card("NewHampshire", "USA", "NewEngland", 1, "images/Cards/USA/NewHampshire.png");
+USA_CARDS[27] = new Card("NewJersey", "USA", "MidAtlantic", 1, "images/Cards/USA/NewJersey.png");
+USA_CARDS[28] = new Card("NewMexico", "USA", "SouthWest", 1, "images/Cards/USA/NewMexico.png");
+USA_CARDS[29] = new Card("NewYork", "USA", "MidAtlantic", 2, "images/Cards/USA/NewYork.png");
+USA_CARDS[30] = new Card("NorthCarolina", "USA", "South", 1, "images/Cards/USA/NorthCarolina.png");
+USA_CARDS[31] = new Card("NorthDakota", "USA", "MidWest", 1, "images/Cards/USA/NorthDakota.png");
+USA_CARDS[32] = new Card("Ohio", "USA", "MidWest", 1, "images/Cards/USA/Ohio.png");
+USA_CARDS[33] = new Card("Oklahoma", "USA", "Southwest", 1, "images/Cards/USA/Oklahoma.png");
+USA_CARDS[34] = new Card("Oregon", "USA", "West", 1, "images/Cards/USA/Oregon.png");
+USA_CARDS[35] = new Card("Pennsylvania", "USA", "MidAtlantic", 1, "images/Cards/USA/Pennsylvania.png");
+USA_CARDS[36] = new Card("RhodeIsland", "USA", "NewEngland", 1, "images/Cards/USA/RhodeIsland.png");
+USA_CARDS[37] = new Card("SouthCarolina", "USA", "South", 1, "images/Cards/USA/SouthCarolina.png");
+USA_CARDS[38] = new Card("SouthDakota", "USA", "MidWest", 1, "images/Cards/USA/SouthDakota.png");
+USA_CARDS[39] = new Card("Tennessee", "USA", "South", 1, "images/Cards/USA/Tennessee.png");
+USA_CARDS[40] = new Card("Texas", "USA", "Southwest", 2, "images/Cards/USA/Texas.png");
+USA_CARDS[41] = new Card("Utah", "USA", "West", 1, "images/Cards/USA/Utah.png");
+USA_CARDS[42] = new Card("Vermont", "USA", "NewEngland", 1, "images/Cards/USA/Vermont.png");
+USA_CARDS[43] = new Card("Virginia", "USA", "South", 2, "images/Cards/USA/Virginia.png");
+USA_CARDS[44] = new Card("Washington", "USA", "West", 1, "images/Cards/USA/Washington.png");
+USA_CARDS[45] = new Card("WestVirginia", "USA", "South", 1, "images/Cards/USA/WestVirginia.png");
+USA_CARDS[46] = new Card("Wisconsin", "USA", "MidWest", 1, "images/Cards/USA/Wisconsin.png");
+USA_CARDS[47] = new Card("Wyoming", "USA", "West", 1, "images/Cards/USA/Wyoming.png");
+
+
 
 // create EASTEROS map cards (66 territories):
 EASTEROS_CARDS[0] = new Card("Ashford", "Easteros", "TheReach", 2, "images/Cards/Easteros/Ashford.png");
@@ -189,7 +241,6 @@ EASTEROS_CARDS[62] = new Card("WhiteHarbor", "Easteros", "TheNorth", 2, "images/
 EASTEROS_CARDS[63] = new Card("WidowsWatch", "Easteros", "TheNorth", 1, "images/Cards/Easteros/WidowsWatch.png");
 EASTEROS_CARDS[64] = new Card("Winterfell", "Easteros", "TheNorth", 2, "images/Cards/Easteros/Winterfell.png");
 EASTEROS_CARDS[65] = new Card("Yronwood", "Easteros", "Dorne", 2, "images/Cards/Easteros/Yronwood.png");
-
 
 
 /*
