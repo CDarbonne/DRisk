@@ -1,5 +1,6 @@
 /*============================= GLOBAL VARIABLES/LOCAL STORAGE ==============================*/
 
+/* PLAYER VARIABLES */
 var PLAYER = []; //Array to store Players information. Temporary until database functionality is available
 var GAMESETUP = true;
 var PLAYERTURN;
@@ -13,6 +14,17 @@ var TEMP_REINFORCEMENTS = 6;
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+
+
+/* CARD VARIABLES */
+var mapDeck = HARD_CARDS; // deck for the chosen map
+var INIT_X_POS = 10; // initial X position
+var INIT_Y_POS = 10; // initial Y position
+var HAND_INIT_Y = 96*4; // initial hand Y position
+var MOVE_TIME = 300;
+var DEAL_TIME = 50;
+var handCoordinates = [];
+var playerHand = [(mapDeck.length/numPlayers)]; // player's cards
 
 for (var i = 1; i <= numPlayers; i++) {
 
@@ -128,30 +140,35 @@ AmCharts.ready(function() {
 	        for (var i = 0; i < 12; i++) {
 			    mapTerritories[i] = new mapArray(EASY_CARDS[i].id, EASY_CARDS[i].region, "none", 1);
 			}
+			mapDeck = EASY_CARDS;
 			extraTroops = 6;
 	        break;
 	    case "Medium":
 	        for (var i = 0; i < 21; i++) {
 			    mapTerritories[i] = new mapArray(MEDIUM_CARDS[i].id, MEDIUM_CARDS[i].region, "none", 1);
 			}
+			mapDeck = MEDIUM_CARDS;
 			extraTroops = 13;
 	        break;
 	    case "Hard":
 	        for (var i = 0; i < 42; i++) {
 			    mapTerritories[i] = new mapArray(HARD_CARDS[i].id, HARD_CARDS[i].region, "none", 1);
 			}
+			mapDeck = HARD_CARDS;
 			extraTroops = 25;
 	        break;
 	    case "US":
 	        for (var i = 0; i < 48; i++) {
 			    mapTerritories[i] = new mapArray(USA_CARDS[i].id, USA_CARDS[i].region, "none", 1);
 			}
+			mapDeck = USA_CARDS;
 			extraTroops = 25;
 	        break;
 	    case "Khorvaire":
 	        for (var i = 0; i < 16; i++) {
 			    mapTerritories[i] = new mapArray(KHORVAIRE_CARDS[i].id, KHORVAIRE_CARDS[i].region, "none", 1);
 			}
+			mapDeck = KHORVAIRE_CARDS;
 			extraTroops = 10;
 	        break;
 	    case "Easteros":
@@ -159,6 +176,7 @@ AmCharts.ready(function() {
 			    mapTerritories[i] = new mapArray(EASTEROS_CARDS[i].id, EASTEROS_CARDS[i].region, "none", 1);
 				console.log(i);
 			}
+			mapDeck = EASTEROS_CARDS;
 			extraTroops = 35;
 	        break;
 	    default:
@@ -510,3 +528,90 @@ endGameBtn.onclick = function() {
 	}
 	updateSidebar();
 }
+
+
+/*=========================== CARD TRANSLATION FUNCTIONS ==============================*/
+
+
+function loadDeck() {
+	//shuffleDeck(mapDeck);
+	buildCoordinateArray(mapDeck);
+	displayDeck(mapDeck, 'cards');
+	console.log(mapDeck[1].id);
+	dealDeck(mapDeck, handCoordinates, MOVE_TIME, DEAL_TIME);
+}
+
+function generalFunction() {
+
+}
+
+// divides cards evenly amongst all players
+function divideCards(deck, number_of_players) {
+	
+}
+
+// builds coordinate array for player's card positions
+function buildCoordinateArray(deck) {
+	
+	for(var c = 0; c < deck.length; c++) {
+		var coordinates = [Math.floor(c*14), HAND_INIT_Y];
+		handCoordinates.push(coordinates);
+	}
+	
+}
+
+
+function displayDeck(deck, id) {
+	var div = document.getElementById(id);
+	var i;
+	var xPosition = 0;
+	var yPosition = 0;
+	var count = 0;
+	deck.forEach(function(e) {
+		console.log("e.id: " + e.id);
+		var currentCard = '<div id="'+e.id+'" class="moveContainer">';
+		currentCard += '  <div class="flipContainer">';
+		currentCard += '    <div class="cardContainer">';
+		currentCard += '      <div class="cardFront"><img src="../images/Cards/'+e.map+'/'+e.id+'.png" width="50"/></div>';
+		currentCard += '      <div class="cardBack"><img src="../images/Cards/back.png" width="50"/></div>';
+		currentCard += '    </div>';
+		currentCard += '  </div>';
+		currentCard += '</div>';
+
+		if (count == 0) {
+			div.innerHTML = currentCard;
+		}
+		else {
+			div.innerHTML = div.innerHTML + currentCard;
+		}
+		count++;
+	});
+}
+
+function moveCardOnClick() {
+	document.getElementById("table").addEventListener("click", function(e){
+		var xPosition = e.clientX;
+		var yPosition = e.clientY;
+
+		console.log(e.clientX);
+		console.log(xPosition);
+		
+		/* Does not work in Firefox */
+		/*
+		var table = document.getElementById("table");
+		var tableMarginLeft = table.currentStyle || window.getComputedStyle(table).marginLeft;
+		var tableMarginTop =  table.currentStyle || window.getComputedStyle(table).marginTop;
+		tableMarginLeft = parseInt(tableMarginLeft);
+		tableMarginTop = parseInt(tableMarginTop);
+		xPosition -= tableMarginLeft;
+		yPosition -= tableMarginTop;
+		*/
+		var card = document.getElementById("cards");
+
+		//card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
+		//card.classList.toggle('move');  
+		moveCardOverTime(card, xPosition, yPosition, MOVE_TIME);
+
+	});
+}
+

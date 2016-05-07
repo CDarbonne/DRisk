@@ -11,7 +11,7 @@ function moveCardOverTime(card, xPos, yPos, time) {
 
 function flipCardOverTime(card, time) {
 	// f = flipContainer
-  var m = document.getElementById(''+card.suit+card.num);
+  var m = document.getElementById(''+card.id);
   var f = m.getElementsByClassName('flipContainer')[0];
 
   f.style.transition = 'all '+time+'ms';
