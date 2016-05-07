@@ -7,6 +7,9 @@ var mapArrayLength;
 var mapTerritories = [];
 var regionsPerPlayer;
 var extraTroops;
+var REINFORCEMENTS = true;
+var REINFORCEMENTS_NUM = 6;
+var TEMP_REINFORCEMENTS = 6;
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
@@ -104,9 +107,9 @@ AmCharts.ready(function() {
 		area.color = color; //Set the color attribute of the territory object to the player color
 		area.colorReal = area.color;
 
-		if (GAMESETUP === false) { //If game is setting up, do not update each time because it will cause the browser to take ~6 seconds to load instead of immediately
+		//if (GAMESETUP === false) { //If game is setting up, do not update each time because it will cause the browser to take ~6 seconds to load instead of immediately
 	    	map.write("mapdiv"); //Update the map with the changes
-		}
+		//}
 
 	}
 
@@ -225,6 +228,22 @@ AmCharts.ready(function() {
 			}
 		}
 
+		if (REINFORCEMENTS === true) {
+			if (mapTerritories[selectedNum].color === PLAYER[PLAYERTURN].color) {
+	        	var newTroopCount = prompt("Please enter the number of troops to reinforce " + mapTerritories[selectedNum].id + "(1-" + TEMP_REINFORCEMENTS + ")");
+	        	var oldTroopCount = mapTerritories[selectedNum].troops;
+	        	for (var i = 0; i < newTroopCount; i++) { 
+	        		mapTerritories[selectedNum].troops++;
+	        	}
+	        	TEMP_REINFORCEMENTS -= newTroopCount;
+	        	if(TEMP_REINFORCEMENTS === 0) {
+	        		REINFORCEMENTS = false;
+	        	}
+			}
+			updateSidebar();
+			return;
+		}
+
 		console.log("selected area: " + selectedArea + " color: " + mapTerritories[selectedNum].color);
 
 		for (var i = 0; i < numPlayers; i++) {
@@ -240,7 +259,6 @@ AmCharts.ready(function() {
 		}
 
 		if (playerNum === PLAYERTURN ) {
-			console.log("ITS MY TURN BITCH");
 			attacker = selectedArea;
 			console.log(attacker);
 			attackBool = true;
@@ -249,7 +267,8 @@ AmCharts.ready(function() {
 		else if ((playerNum !== PLAYERTURN) && (attackBool == 1)) {
 			defender = selectedArea;
 			console.log(defender);
-			attack(attacker, defender);
+			var color = attack(attacker, defender);
+			changeColor(defender, color);
 			attackBool = false;
 		}
 		
@@ -335,8 +354,11 @@ function attack(attacker, defender) {
 	        	mapTerritories[defendNum].color = mapTerritories[attackNum].color;
 	        	var newTroopCount = prompt("Please enter the number of troops to occupy " + mapTerritories[defendNum].id + "(1-" + (mapTerritories[attackNum].troops - 1) + ")");
 	        	mapTerritories[defendNum].troops = newTroopCount;
+	        	mapTerritories[defendNum].color = mapTerritories[attackNum].color;
+	        	//changeColor(mapTerritories[defendNum].id, mapTerritories[attackNum].color);
 	        	mapTerritories[attackNum].troops -= newTroopCount;
-	        	break;
+	        	updateSidebar();
+	        	return mapTerritories[attackNum].color;
 	        }
 	    }
         else if(attackDice[i] < defendDice[i])
@@ -347,9 +369,11 @@ function attack(attacker, defender) {
 	        mapTerritories[attackNum].troops = mapTerritories[attackNum].troops - 1;
 	        console.log("Attacker troops: " + mapTerritories[attackNum].troops);
 	        if (mapTerritories[attackNum].troops === 1) {
+	        	console.log("defense beats attack");
 	        	window.alert(mapTerritories[attackNum].id + " has only one army left! No more attacks can be made in order to keep a defending army!");
-	        	break;
+	        	updateSidebar();
 	        }
+	       	return mapTerritories[defendNum].color;
 
 
         }
@@ -361,9 +385,13 @@ function attack(attacker, defender) {
 	        mapTerritories[attackNum].troops = mapTerritories[attackNum].troops - 1;
 	        console.log("Attacker troops: " + mapTerritories[attackNum].troops);
 	        if (mapTerritories[attackNum].troops === 1) {
+	        	console.log("tie");
 	        	window.alert(mapTerritories[attackNum].id + " has only one army left! No more attacks can be made in order to keep a defending army!");
-	        	break;
+	        	updateSidebar();
+	        	return mapTerritories[defendNum].color;
 	        }
+	       	return mapTerritories[defendNum].color;
+
     	}
 	}
 	updateSidebar();
@@ -418,15 +446,67 @@ function orderArray(array) {
 }
 
 function updateSidebar() {
-	var div = document.getElementById('sidebar');
-	var sidebarDiv = "<p><h2>Troop Count by Territory</h2>"
+	var div = document.getElementById("sidebarContent");
+	console.log(div);
+	
+	//var sidebarDiv ="<button id = \"EndTurn\">End Turn</button><br>" 
+	var sidebarDiv = "<span style=\"background-color: " + PLAYER[PLAYERTURN].color + "\">" + PLAYER[PLAYERTURN].name + "'s turn</span>";
+	sidebarDiv += "<p><h2>Troop Count</h2>"
 
 	for (var i = 0; i < mapTerritories.length; i++) {
 		sidebarDiv += "<span style=\"background-color: " + mapTerritories[i].color + "\">" + mapTerritories[i].id + ":</span> " + mapTerritories[i].troops + "<br>";
-
 	}
 
 	div.innerHTML = sidebarDiv;
 }
 
 
+
+/*=========================== END TURN FUNCTIONS ==============================*/
+
+var endTurnBtn = document.getElementById("EndTurn");
+console.log(endTurnBtn);
+
+endTurnBtn.onclick = function() {
+	checkForGameEnd();
+	if (PLAYERTURN === (numPlayers - 1)) {
+		PLAYERTURN = 0;
+		REINFORCEMENTS = true;
+		TEMP_REINFORCEMENTS = REINFORCEMENTS_NUM;
+		updateSidebar();
+	}
+	else {
+		PLAYERTURN++;
+		REINFORCEMENTS = true;
+		TEMP_REINFORCEMENTS = REINFORCEMENTS_NUM;
+		updateSidebar();
+	}
+}
+
+/*=========================== GAME ENDING FUNCTIONS ==============================*/
+
+function checkForGameEnd() {
+	console.log("Check for winner");
+	var winner = mapTerritories[0].color;
+	for (var i = 0; i < mapTerritories.length; i++) {
+		if (winner !== mapTerritories[i].color) {
+			console.log("No winner...");
+			return;
+		}
+	}
+	for (var i = 0; i < numPlayers; i++) {
+		if (PLAYER[i].color === winner) {
+			window.alert(PLAYER[i].name + " IS THE WINNER! GOOD JOB, SPORT!");
+			break;
+		}
+	}
+}
+
+var endGameBtn = document.getElementById("EndGame");
+
+endGameBtn.onclick = function() {
+	for (var i = 0; i < mapTerritories.length; i++) {
+		mapTerritories[i].color = PLAYER[0].color;
+	}
+	updateSidebar();
+}

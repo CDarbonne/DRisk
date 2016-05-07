@@ -1,7 +1,7 @@
 
 
 //Get the <span> element that closes the modal
-var span = document.getElementsByClassName("closeModal")[0];
+var span = document.getElementById("closeModal");
 
 
 //Get the modal
@@ -9,7 +9,7 @@ var ContactModal = document.getElementById('ContactModal');
 ContactModal.style.display = "none";
 
 //Get the button to open the modal
-var contactBtn = document.getElementById("Contact");
+var contactBtn = document.getElementById("ContactModal");
 
 //When the user clicks on the button, open the contact modal
 contactBtn.onclick = function() {
@@ -25,7 +25,7 @@ contactBtn.onclick = function() {
 span.onclick = function() {
 	ContactModal.style.display = "none";
 }
-
+/*
 var LeaderboardModal = document.getElementById('LeaderboardModal');
 
 //Get the button to open the modal
@@ -55,4 +55,4 @@ GameRulesBtn.onclick = function() {
 //When the user clicks on <span> (X), close the modal
 span.onclick = function() {
 	GameRulesModal.style.display = "none";
-}
+}*/
