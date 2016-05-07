@@ -1,6 +1,8 @@
 function moveCardOverTime(card, xPos, yPos, time) {
   // m = moveContainer
-  var m = document.getElementById(''+card.id);
+  var m = document.getElementById(card.id);
+  console.log(m);
+
 
   m.style.transition = 'all '+time+'ms';
   m.style.transform = 'translate('+xPos+'px,'+yPos+'px)';

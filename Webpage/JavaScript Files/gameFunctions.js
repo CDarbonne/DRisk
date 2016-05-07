@@ -326,9 +326,9 @@ function attack(attacker, defender) {
         {
             //Console test output
             console.log("Tie, Defenders win.");
-            console.log("Defender troops: " + mapTerritories[defendNum].troops);
-	        mapTerritories[defendNum].troops = mapTerritories[defendNum].troops - 1;
-	        console.log("Defender troops: " + mapTerritories[defendNum].troops);
+            console.log("Attacker troops: " + mapTerritories[attackNum].troops);
+	        mapTerritories[attackNum].troops = mapTerritories[attackNum].troops - 1;
+	        console.log("Attacker troops: " + mapTerritories[attackNum].troops);
     	}
 	}
 }

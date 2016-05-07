@@ -23,6 +23,7 @@
     <!-- <img src="../images/Cards/Back.png" width="100"/> -->
   </div>
 </div>
+  <link rel="stylesheet" type="text/css" href="../style.css">
 
 <script type="text/javascript" src="cards.js"></script>
 <script type="text/javascript" src="deckFunctions.js"></script>
@@ -41,6 +42,7 @@ var handCoordinates = [];
 
 buildCoordinateArray(deck1);
 displayDeck(deck1, 'cards');
+console.log(deck1[1].id);
 dealDeck(deck1, handCoordinates, MOVE_TIME, DEAL_TIME);
 moveCardOnClick();
 
@@ -69,8 +71,8 @@ function displayDeck(deck, id) {
 	var yPosition = 0;
 	var count = 0;
 	deck.forEach(function(e) {
-
-		var currentCard = '<div id="'+e.id+'" class="moveContainer" onmousedown="generalFunction();">';
+		console.log("e.id: " + e.id);
+		var currentCard = '<div id="'+e.id+'" class="moveContainer">';
 		currentCard += '  <div class="flipContainer">';
 		currentCard += '    <div class="cardContainer">';
 		currentCard += '      <div class="cardFront"><img src="../images/Cards/'+e.map+'/'+e.id+'.png" width="50"/></div>';
@@ -91,11 +93,11 @@ function displayDeck(deck, id) {
 
 function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
   var cardDistributerCounter = 0;
-
+  console.log(cardArray[1].id);
   var cardDistributerInterval = setInterval(function() {
     moveCardOverTime(cardArray[cardDistributerCounter],
-      coordinatesArray[cardDistributerCounter][0],
-      coordinatesArray[cardDistributerCounter][1],
+      0,
+      0,
       moveTime);
 
 
@@ -110,9 +112,13 @@ function moveCardOnClick() {
 	document.getElementById("table").addEventListener("click", function(e){
 		var xPosition = e.clientX;
 		var yPosition = e.clientY;
-		var table = document.getElementById("table");
+
+		console.log(e.clientX);
+		console.log(xPosition);
+		
 		/* Does not work in Firefox */
 		/*
+		var table = document.getElementById("table");
 		var tableMarginLeft = table.currentStyle || window.getComputedStyle(table).marginLeft;
 		var tableMarginTop =  table.currentStyle || window.getComputedStyle(table).marginTop;
 		tableMarginLeft = parseInt(tableMarginLeft);
@@ -121,8 +127,9 @@ function moveCardOnClick() {
 		yPosition -= tableMarginTop;
 		*/
 		var card = document.getElementById("cards");
-		card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
-		card.classList.toggle('move');  
+		//card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
+		//card.classList.toggle('move');  
+		moveCardOverTime(card, xPosition, yPosition, MOVE_TIME);
 	});
 }
 
