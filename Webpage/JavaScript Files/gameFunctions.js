@@ -1,3 +1,35 @@
+/*============================= GLOBAL VARIABLES/LOCAL STORAGE ==============================*/
+
+var PLAYER = []; //Array to store Players information. Temporary until database functionality is available
+var GAMESETUP = true;
+var PLAYERTURN;
+
+var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
+var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+
+for (var i = 1; i <= numPlayers; i++) {
+
+	var teamColor = JSON.parse(localStorage.getItem('teamColor' + i));
+	var teamName = JSON.parse(localStorage.getItem('teamName' + i));
+
+	PLAYER[i - 1] = {
+		name: teamName,
+		color: teamColor
+	};
+}
+
+/*
+//TEST FOR PLAYER CONSTRUCTOR
+for (var i = 1; i <= numPlayers; i++) {
+
+	console.log(PLAYER[i]);
+}
+*/
+
+
+
+
+
 /*======================== AMMAP MAP CREATION FUNCTION ========================*/
 
 
@@ -56,69 +88,90 @@
 			    // write the map to container div
 			    map.write("mapdiv");
                            
-                           
-						   //This is the function that changes color of the individual
-						   //areas
-                           function test() {
-                            // generate random color
-                            //var color = Math.floor( Math.random() * 0xffffff );
-    
-                            // update US color in data
-                            var area = map.getObjectById("Winterfell");
-                            area.color = '#5e3513';
-                            area.colorReal = area.color;
-    
-                            // make the chart take in new color
-                            //map.returnInitialColor(area);
-							}
 
-
-
-
-
-/*============================= COLOR CHANGING FUNCTIONS ==========================*/
+/*============================= COLOR CHANGING FUNCTION ==========================*/
 
 //This is the function that changes color of the individual areas
-function changeColor(id) {
+function changeColor(id, color) {
 
 	
 	this.id = id;
-	console.log(id);
+	this.color = color;
 
-	/*PHP to get the army color based on playerID
-	*/
-	
-	
-	
-	// generate random color
-    //var color = Math.floor( Math.random() * 0xffffff );
-
-	// update US color in data
-	var area = map.getObjectById(id);
-	area.color = '#5e3513';
+	// update color in data
+	var area = map.getObjectById(id); //Find map territory object by id
+	//console.log(area);
+	area.color = color; //Set the color attribute of the territory object to the player color
 	area.colorReal = area.color;
-    
-	// make the chart take in new color
-	//map.returnInitialColor(area);
+
+	if (GAMESETUP == false) { //If game is setting up, do not update each time because it will cause the browser to take ~6 seconds to load instead of immediately
+    	map.write("mapdiv"); //Update the map with the changes
+	}
+
+	
 }
 
 
-/*=============================TEST LOCAL STORAGE==================================*/
+/*======================== REGION ASSIGNMENT ========================*/
 
-var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
-var teamColor = JSON.parse(localStorage.getItem('teamColor'));
-var teamName = JSON.parse(localStorage.getItem('teamName'));
-var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+var mapArray = [];
 
+switch(mapSelect) {
+    case "Easy":
+        mapArray = EASY_CARDS;
+        break;
+    case "Medium":
+        mapArray = MEDIUM_CARDS;
+        break;
+    case "Hard":
+        mapArray = HARD_CARDS;
+        break;
+    case "US":
+        mapArray = USA_CARDS;
+        break;
+    case "Khorvaire":
+        mapArray = KHORVAIRE_CARDS;
+        break;
+    case "Easteros":
+        mapArray = EASTEROS_CARDS;
+        break;
+    default:
+        window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT, BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
+}
 
+var mapArrayLength = mapArray.length;
 
-console.log("testing");
-console.log(numPlayers);	
-console.log(teamColor);
-console.log(teamName);
-console.log(mapSelect);			
-		
+for (var i = 0; i < numPlayers; i++) { //Regions shuffled one time for each player in the game to increase randomization
+	shuffle(mapArray); //Shuffles the array of regions
+}
 
+shuffle(PLAYER); //Shuffles the array of players so that the order is random, thus fair
+
+var regionsPerPlayer = (mapArrayLength / numPlayers); //Variable to define the number of regions per player. the last player will recieve any leftover regions
+var arrayCounter = 0; //Used to iterate through the region array
+
+for (var i = 0; i < numPlayers; i++) {
+
+	//console.log("PLAYER " + i);
+	for (var x = 1; x <= regionsPerPlayer; x++, arrayCounter++) {
+		//console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i].color);
+		changeColor(mapArray[arrayCounter].id, PLAYER[i].color);
+	}
+}
+
+if (arrayCounter != mapArrayLength) { //If there are any remaining unassigned territories due to uneven division, the last player gets them to balance the disadvantage of going last
+	for (var x = arrayCounter; x < mapArrayLength; x++, arrayCounter++) {
+		//console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[numPlayers - 1].color);
+		changeColor(mapArray[arrayCounter].id, PLAYER[numPlayers - 1].color);
+	}
+}
+
+map.write("mapdiv"); //Update the map with the changes
+GAMESETUP = false; //Set to false so that all subsequent color changes will be automatically updated by the changeColor() function
+
+/*================================== GAME SETUP =====================================*/
+
+PLAYERTURN = 0; //Make the game begin on Player 1's turn
 
 /*============================== ONCLICK FUNCTIONS ==================================*/
 
@@ -132,27 +185,27 @@ map.addListener("clickMapObject", function (event) {
 	var selectedArea = event.mapObject.id;
 	var selectedColor = selectedArea;
 	console.log("selected area: " + selectedArea);
-	changeColor(selectedArea);
+	//changeColor(selectedArea);
 	//test();
 
 	selectedColor.colorReal = selectedColor.color;
 	//map.returnInitialColor(selectedColor);
-if (yourTurn == 1) {
-	if (attackBool == 0)
-	{
-		attacker = selectedArea;
-		console.log(attacker);
-		attackBool++;
-	}
+	if (yourTurn == 1) {
+		if (attackBool == 0)
+		{
+			attacker = selectedArea;
+			console.log(attacker);
+			attackBool++;
+		}
 
-	else if (attackBool == 1)
-	{
-		defender = selectedArea;
-		console.log(defender);
-		attack(attacker, defender);
-		attackBool = 0;
+		else if (attackBool == 1)
+		{
+			defender = selectedArea;
+			console.log(defender);
+			attack(attacker, defender);
+			attackBool = 0;
+		}
 	}
-}
 });//listener function
 
 });//ammap ready function
@@ -160,81 +213,99 @@ if (yourTurn == 1) {
 
 /*============================== ATTACK FUNCTIONS ===================================*/
 function attack(attacker, defender) {
-//Declaring variables to represent the number of dice used by the attacker and defender after user input is scanned in
-var numAttackDice;
-var numDefendDice;
-console.log("THE ATTACK HAS BEGUN!");
+	//Declaring variables to represent the number of dice used by the attacker and defender after user input is scanned in
+	var numAttackDice;
+	var numDefendDice;
+	console.log("THE ATTACK HAS BEGUN!");
 
-//Assigns the number of dice used by the attacker based on user input
-var userAttackDice = prompt("Please enter the number of dice the attacker will roll (1-3)");
-if(userAttackDice !== null)
-{
-    numAttackDice = userAttackDice;
+	//Assigns the number of dice used by the attacker based on user input
+	var userAttackDice = prompt("Please enter the number of dice the attacker will roll (1-3)");
+	if(userAttackDice !== null)
+	{
+	    numAttackDice = userAttackDice;
+	}
+
+	/*/Assigns the number of dice used by the defender based on user input
+	var userDefendDice = prompt("Please enter the number of dice the attacker will roll (1-2)");
+	if(userDefendDice !== null)
+	{
+	    numDefendDice = userDefendDice;
+	}*/
+	numDefendDice = userAttackDice;
+	//Creates an array to hold the attacker dice values to be compared later
+	var attackDice = new Array();
+
+	//Fills array with random possible dice values of 1-6
+	for(i = 0; i < numAttackDice; i++)
+	{
+	    var tempDice = Math.floor((Math.random() * 6) + 1);
+	    attackDice[i] = tempDice;
+	}
+
+	//Testing output results
+	console.log("Attackers rolled : " +attackDice.toString());
+
+	//Creates an array to hold the defenders dice values to be compared later
+	var defendDice = new Array();
+
+	//Fills the array with random possible dice values of 1-6
+	for(i = 0; i < numDefendDice; i++)
+	{
+	    var tempDice2 = Math.floor((Math.random() *6) + 1);
+	    defendDice[i] = tempDice2;
+	}
+
+	//Testing output results
+	console.log("Defenders rolled : " + defendDice);
+
+	//Compares each value in the attacker array against each value in the defender array to determine winner
+	for(i = 0; i < attackDice.length; i++)
+	{
+	    for(j = 0; j < defendDice.length; j++)
+	    {
+	        if(attackDice[i] > defendDice[j])
+	        {
+	            //Console test output
+	            console.log(attackDice[i] + " beats " + defendDice[j]);
+	        }
+	        else if(attackDice[i] < defendDice[j])
+	        {
+	            //Console test output
+	            console.log(attackDice[i] + " loses to " + defendDice[j]);
+	        }
+	        else if(attackDice[i] == defendDice[j])
+	        {
+	            //Console test output
+	            console.log("Tie, Defenders win.");
+	        }
+	    }
+	}
 }
 
-/*/Assigns the number of dice used by the defender based on user input
-var userDefendDice = prompt("Please enter the number of dice the attacker will roll (1-2)");
-if(userDefendDice !== null)
-{
-    numDefendDice = userDefendDice;
-}*/
-numDefendDice = userAttackDice;
-//Creates an array to hold the attacker dice values to be compared later
-var attackDice = new Array();
 
-//Fills array with random possible dice values of 1-6
-for(i = 0; i < numAttackDice; i++)
-{
-    var tempDice = Math.floor((Math.random() * 6) + 1);
-    attackDice[i] = tempDice;
+
+
+
+/*=========================== MISCELLANEOUS FUNCTIONS ==============================*/
+
+function shuffle(array) { //Shuffles the contents of an array and returns the result
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
-
-//Testing output results
-console.log("Attackers rolled : " +attackDice.toString());
-
-//Creates an array to hold the defenders dice values to be compared later
-var defendDice = new Array();
-
-//Fills the array with random possible dice values of 1-6
-for(i = 0; i < numDefendDice; i++)
-{
-    var tempDice2 = Math.floor((Math.random() *6) + 1);
-    defendDice[i] = tempDice2;
-}
-
-//Testing output results
-console.log("Defenders rolled : " + defendDice);
-
-//Compares each value in the attacker array against each value in the defender array to determine winner
-for(i = 0; i < attackDice.length; i++)
-{
-    for(j = 0; j < defendDice.length; j++)
-    {
-        if(attackDice[i] > defendDice[j])
-        {
-            //Console test output
-            console.log(attackDice[i] + " beats " + defendDice[j]);
-        }
-        else if(attackDice[i] < defendDice[j])
-        {
-            //Console test output
-            console.log(attackDice[i] + " loses to " + defendDice[j]);
-        }
-        else if(attackDice[i] == defendDice[j])
-        {
-            //Console test output
-            console.log("Tie, Defenders win.");
-        }
-    }
-}
-}
-
-
-
-
-
-/*=========================== TEAM TERRITORY CHOOSING ==============================*/
-
 
 
 
