@@ -5,6 +5,8 @@ var GAMESETUP = true;
 var PLAYERTURN;
 var mapArrayLength;
 var mapTerritories = [];
+var regionsPerPlayer;
+var extraTroops;
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
@@ -123,32 +125,38 @@ AmCharts.ready(function() {
 	        for (var i = 0; i < 12; i++) {
 			    mapTerritories[i] = new mapArray(EASY_CARDS[i].id, EASY_CARDS[i].region, "none", 1);
 			}
+			extraTroops = 6;
 	        break;
 	    case "Medium":
 	        for (var i = 0; i < 21; i++) {
 			    mapTerritories[i] = new mapArray(MEDIUM_CARDS[i].id, MEDIUM_CARDS[i].region, "none", 1);
 			}
+			extraTroops = 13;
 	        break;
 	    case "Hard":
 	        for (var i = 0; i < 42; i++) {
 			    mapTerritories[i] = new mapArray(HARD_CARDS[i].id, HARD_CARDS[i].region, "none", 1);
 			}
+			extraTroops = 25;
 	        break;
 	    case "US":
 	        for (var i = 0; i < 48; i++) {
 			    mapTerritories[i] = new mapArray(USA_CARDS[i].id, USA_CARDS[i].region, "none", 1);
 			}
+			extraTroops = 25;
 	        break;
 	    case "Khorvaire":
 	        for (var i = 0; i < 16; i++) {
 			    mapTerritories[i] = new mapArray(KHORVAIRE_CARDS[i].id, KHORVAIRE_CARDS[i].region, "none", 1);
 			}
+			extraTroops = 10;
 	        break;
 	    case "Easteros":
 	    	for (var i = 0; i < 66; i++) {
 			    mapTerritories[i] = new mapArray(EASTEROS_CARDS[i].id, EASTEROS_CARDS[i].region, "none", 1);
 				console.log(i);
 			}
+			extraTroops = 35;
 	        break;
 	    default:
 	        window.alert("SOMETHING WENT WRONG! I DONT KNOW WHAT, BUT SOMETHING IS VERY WRONG! GET OUT OF HERE QUICK!");
@@ -163,7 +171,7 @@ AmCharts.ready(function() {
 
 	shuffle(PLAYER); //Shuffles the array of players so that the order is random, thus fair
 
-	var regionsPerPlayer = (mapArrayLength / numPlayers); //Variable to define the number of regions per player. the last player will recieve any leftover regions
+	regionsPerPlayer = (mapArrayLength / numPlayers); //Variable to define the number of regions per player. the last player will recieve any leftover regions
 	var arrayCounter = 0; //Used to iterate through the region array
 
 	for (var i = 0; i < numPlayers; i++) {
@@ -175,7 +183,6 @@ AmCharts.ready(function() {
 			mapTerritories[arrayCounter].color = PLAYER[i].color;
 		}
 	}
-	console.log(mapTerritories[5].color);
 
 	if (arrayCounter !== mapArrayLength) { //If there are any remaining unassigned territories due to uneven division, the last player gets them to balance the disadvantage of going last
 		for (var x = arrayCounter; x < mapArrayLength; x++, arrayCounter++) {
@@ -185,12 +192,18 @@ AmCharts.ready(function() {
 		}
 	}
 
+	extraTroops = extraTroops/numPlayers;
+	for (var i = 0; i < numPlayers; i++) {
+		extraTroopAssignment(i * regionsPerPlayer);
+	}
+
 	map.write("mapdiv"); //Update the map with the changes
 	GAMESETUP = false; //Set to false so that all subsequent color changes will be automatically updated by the changeColor() function
 
 	/*================================== GAME SETUP =====================================*/
 
 	PLAYERTURN = 0; //Make the game begin on Player 1's turn
+	updateSidebar();
 
 	/*============================== ONCLICK FUNCTIONS ==================================*/
 
@@ -221,7 +234,12 @@ AmCharts.ready(function() {
 			}
 		}
 
-		if (playerNum === PLAYERTURN) {
+		if (playerNum === PLAYERTURN && mapTerritories[selectedNum].troops === 1) {
+			window.alert("You cannot attack with a territory containing only one army! Leave some defenders!");
+			return;
+		}
+
+		if (playerNum === PLAYERTURN ) {
 			console.log("ITS MY TURN BITCH");
 			attacker = selectedArea;
 			console.log(attacker);
@@ -313,6 +331,13 @@ function attack(attacker, defender) {
 	        console.log("Defender troops: " + mapTerritories[defendNum].troops);
 	        mapTerritories[defendNum].troops = mapTerritories[defendNum].troops - 1;
 	        console.log("Defender troops: " + mapTerritories[defendNum].troops);
+	        if (mapTerritories[defendNum].troops === 0) {
+	        	mapTerritories[defendNum].color = mapTerritories[attackNum].color;
+	        	var newTroopCount = prompt("Please enter the number of troops to occupy " + mapTerritories[defendNum].id + "(1-" + (mapTerritories[attackNum].troops - 1) + ")");
+	        	mapTerritories[defendNum].troops = newTroopCount;
+	        	mapTerritories[attackNum].troops -= newTroopCount;
+	        	break;
+	        }
 	    }
         else if(attackDice[i] < defendDice[i])
         {
@@ -321,6 +346,12 @@ function attack(attacker, defender) {
             console.log("Attacker troops: " + mapTerritories[attackNum].troops);
 	        mapTerritories[attackNum].troops = mapTerritories[attackNum].troops - 1;
 	        console.log("Attacker troops: " + mapTerritories[attackNum].troops);
+	        if (mapTerritories[attackNum].troops === 1) {
+	        	window.alert(mapTerritories[attackNum].id + " has only one army left! No more attacks can be made in order to keep a defending army!");
+	        	break;
+	        }
+
+
         }
         else if(attackDice[i] == defendDice[i])
         {
@@ -329,8 +360,13 @@ function attack(attacker, defender) {
             console.log("Attacker troops: " + mapTerritories[attackNum].troops);
 	        mapTerritories[attackNum].troops = mapTerritories[attackNum].troops - 1;
 	        console.log("Attacker troops: " + mapTerritories[attackNum].troops);
+	        if (mapTerritories[attackNum].troops === 1) {
+	        	window.alert(mapTerritories[attackNum].id + " has only one army left! No more attacks can be made in order to keep a defending army!");
+	        	break;
+	        }
     	}
 	}
+	updateSidebar();
 }
 
 
@@ -358,6 +394,13 @@ function shuffle(array) { //Shuffles the contents of an array and returns the re
   return array;
 }
 
+function extraTroopAssignment(start) {
+		for (var i = 0; i < extraTroops; i++) {
+		    randomIndex = Math.floor(Math.random() * regionsPerPlayer);
+		    mapTerritories[start + randomIndex].troops += 1;
+		}
+}
+
 function orderArray(array) { 
 	var currentIndex = array.length, temporaryValue;
 
@@ -374,5 +417,16 @@ function orderArray(array) {
   	return array;
 }
 
+function updateSidebar() {
+	var div = document.getElementById('sidebar');
+	var sidebarDiv = "<p><h2>Troop Count by Territory</h2>"
+
+	for (var i = 0; i < mapTerritories.length; i++) {
+		sidebarDiv += "<span style=\"background-color: " + mapTerritories[i].color + "\">" + mapTerritories[i].id + ":</span> " + mapTerritories[i].troops + "<br>";
+
+	}
+
+	div.innerHTML = sidebarDiv;
+}
 
 

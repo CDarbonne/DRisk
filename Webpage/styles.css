@@ -178,6 +178,15 @@
   color: white;
 }
 
+#sidebar {
+  background: #ffffff;
+  position: absolute;
+  left: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+  z-index: 1000;
+}
 
 /* Make sure they show even if hidden in mobile view by JS 
 @media (min-width: 600px) {
