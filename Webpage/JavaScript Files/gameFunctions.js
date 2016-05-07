@@ -109,66 +109,52 @@ function changeColor(id, color) {
 	area.color = color; //Set the color attribute of the territory object to the player color
 	area.colorReal = area.color;
 
-	if (GAMESETUP == false) { //If game is setting up, do not update each time because it will cause the browser to take ~6 seconds to load instead of immediately
+	if (GAMESETUP === false) { //If game is setting up, do not update each time because it will cause the browser to take ~6 seconds to load instead of immediately
     	map.write("mapdiv"); //Update the map with the changes
 	}
 
-	
 }
 
 
 /*======================== REGION ASSIGNMENT ========================*/
 
-var mapArray = [];
-var mapVar;
+function mapArray(id, regions, color) {
+    this.id = id;
+    this.regions = regions;
+    this.color = color;
+}
+var mapTerritories = [];
 
 switch(mapSelect) {
     case "Easy":
         for (var i = 0; i < 12; i++) {
-		    mapArray[i] = {
-		    	id: EASY_CARDS[i].id,
-		    	region: EASY_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(EASY_CARDS[i].id, EASY_CARDS[i].region, "none");
 		}
         break;
     case "Medium":
         for (var i = 0; i < 21; i++) {
-		    mapArray[i] = {
-		    	id: MEDIUM_CARDS[i].id,
-		    	region: MEDIUM_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(MEDIUM_CARDS[i].id, MEDIUM_CARDS[i].region, "none");
 		}
         break;
     case "Hard":
         for (var i = 0; i < 42; i++) {
-		    mapArray[i] = {
-		    	id: HARD_CARDS[i].id,
-		    	region: HARD_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(HARD_CARDS[i].id, HARD_CARDS[i].region, "none");
 		}
         break;
     case "US":
         for (var i = 0; i < 48; i++) {
-		    mapArray[i] = {
-		    	id: USA_CARDS[i].id,
-		    	region: USA_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(USA_CARDS[i].id, USA_CARDS[i].region, "none");
 		}
         break;
     case "Khorvaire":
         for (var i = 0; i < 16; i++) {
-		    mapArray[i] = {
-		    	id: KHORVAIRE_CARDS[i].id,
-		    	region: KHORVAIRE_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(KHORVAIRE_CARDS[i].id, KHORVAIRE_CARDS[i].region, "none");
 		}
         break;
     case "Easteros":
     	for (var i = 0; i < 66; i++) {
-		    mapArray[i] = {
-		    	id: EASTEROS_CARDS[i].id,
-		    	region: EASTEROS_CARDS[i].region
-		    };
+		    mapArray[i] = new mapArray(EASTEROS_CARDS[i].id, EASTEROS_CARDS[i].region, "none");
+			console.log(i);
 		}
         break;
     default:
@@ -176,6 +162,7 @@ switch(mapSelect) {
 }
 
 var mapArrayLength = mapArray.length;
+console.log(mapArrayLength);
 
 for (var i = 0; i < numPlayers; i++) { //Regions shuffled one time for each player in the game to increase randomization
 	shuffle(mapArray); //Shuffles the array of regions
@@ -192,6 +179,7 @@ for (var i = 0; i < numPlayers; i++) {
 	for (var x = 1; x <= regionsPerPlayer; x++, arrayCounter++) {
 		console.log(arrayCounter + " " + mapArray[arrayCounter].id + " " + PLAYER[i].color);
 		changeColor(mapArray[arrayCounter].id, PLAYER[i].color);
+
 	}
 }
 
@@ -201,8 +189,6 @@ if (arrayCounter != mapArrayLength) { //If there are any remaining unassigned te
 		changeColor(mapArray[arrayCounter].id, PLAYER[numPlayers - 1].color);
 	}
 }
-
-console.log(mapArray);
 
 map.write("mapdiv"); //Update the map with the changes
 GAMESETUP = false; //Set to false so that all subsequent color changes will be automatically updated by the changeColor() function
