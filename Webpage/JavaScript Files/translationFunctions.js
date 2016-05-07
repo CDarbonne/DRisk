@@ -34,8 +34,8 @@ function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
 
 	var cardDistributerInterval = setInterval(function() {
     moveCardOverTime(cardArray[cardDistributerCounter],
-      10,
-      10,
+      coordinatesArray[cardDistributerCounter][0],
+      coordinatesArray[cardDistributerCounter][1],
       moveTime);
 	
     cardDistributerCounter++;
