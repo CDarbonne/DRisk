@@ -146,7 +146,7 @@
 }
 
 #closeMenu,
-.closeModal {
+#closeModal {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -155,8 +155,8 @@
 
 #closeMenu:hover,
 #closeMenu:focus,
-.closeModal:hover,
-.closeModal:focus {
+#closeModal:hover,
+#closeModal:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
