@@ -33,11 +33,16 @@
 <script type="text/javascript" src="cards.js"></script>
 <script type="text/javascript" src="deckFunctions.js"></script>
 <script type="text/javascript" src="translationFunctions.js"></script>
+<script type="text/javascript" src="gameFunctions.js"></script>
 
 <script>
 
-var deck1 = HARD_CARDS;
+/*
+var mapDeck = HARD_CARDS; // deck for the chosen map
 
+//var num_of_players = 4;
+var playerArray = [num_of_players]; // array of players
+var num_of_players = 4;
 var INIT_X_POS = 10; // initial X position
 var INIT_Y_POS = 10; // initial Y position
 var HAND_INIT_Y = 96*4; // initial hand Y position
@@ -45,16 +50,22 @@ var MOVE_TIME = 300;
 var DEAL_TIME = 50;
 
 var handCoordinates = [];
-var hand = []; // player's cards
+var playerHand = [(mapDeck.length/num_of_players)]; // player's cards
+*/
 
-buildCoordinateArray(deck1);
-displayDeck(deck1, 'cards');
-console.log(deck1[1].id);
-dealDeck(deck1, handCoordinates, MOVE_TIME, DEAL_TIME);
-moveCardOnClick();
+//shuffleDeck(mapDeck);
+buildCoordinateArray(mapDeck);
+displayDeck(mapDeck, 'cards');
+console.log(mapDeck[1].id);
+dealDeck(mapDeck, handCoordinates, MOVE_TIME, DEAL_TIME);
 
 function generalFunction() {
 
+}
+
+// divides cards evenly amongst all players
+function divideCards(deck, number_of_players) {
+	
 }
 
 // builds coordinate array for player's card positions

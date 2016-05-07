@@ -1,5 +1,6 @@
 /*============================= GLOBAL VARIABLES/LOCAL STORAGE ==============================*/
 
+/* PLAYER VARIABLES */
 var PLAYER = []; //Array to store Players information. Temporary until database functionality is available
 var GAMESETUP = true;
 var PLAYERTURN;
@@ -10,6 +11,17 @@ var extraTroops;
 
 var numPlayers = JSON.parse(localStorage.getItem('numPlayers'));
 var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
+
+
+/* CARD VARIABLES */
+var mapDeck; // deck for the chosen map
+var INIT_X_POS = 10; // initial X position
+var INIT_Y_POS = 10; // initial Y position
+var HAND_INIT_Y = 96*4; // initial hand Y position
+var MOVE_TIME = 300;
+var DEAL_TIME = 50;
+var handCoordinates = [];
+var playerHand = [(mapDeck.length/numPlayers)]; // player's cards
 
 for (var i = 1; i <= numPlayers; i++) {
 
@@ -125,30 +137,35 @@ AmCharts.ready(function() {
 	        for (var i = 0; i < 12; i++) {
 			    mapTerritories[i] = new mapArray(EASY_CARDS[i].id, EASY_CARDS[i].region, "none", 1);
 			}
+			mapDeck = EASY_CARDS;
 			extraTroops = 6;
 	        break;
 	    case "Medium":
 	        for (var i = 0; i < 21; i++) {
 			    mapTerritories[i] = new mapArray(MEDIUM_CARDS[i].id, MEDIUM_CARDS[i].region, "none", 1);
 			}
+			mapDeck = MEDIUM_CARDS;
 			extraTroops = 13;
 	        break;
 	    case "Hard":
 	        for (var i = 0; i < 42; i++) {
 			    mapTerritories[i] = new mapArray(HARD_CARDS[i].id, HARD_CARDS[i].region, "none", 1);
 			}
+			mapDeck = HARD_CARDS;
 			extraTroops = 25;
 	        break;
 	    case "US":
 	        for (var i = 0; i < 48; i++) {
 			    mapTerritories[i] = new mapArray(USA_CARDS[i].id, USA_CARDS[i].region, "none", 1);
 			}
+			mapDeck = USA_CARDS;
 			extraTroops = 25;
 	        break;
 	    case "Khorvaire":
 	        for (var i = 0; i < 16; i++) {
 			    mapTerritories[i] = new mapArray(KHORVAIRE_CARDS[i].id, KHORVAIRE_CARDS[i].region, "none", 1);
 			}
+			mapDeck = KHORVAIRE_CARDS;
 			extraTroops = 10;
 	        break;
 	    case "Easteros":
@@ -156,6 +173,7 @@ AmCharts.ready(function() {
 			    mapTerritories[i] = new mapArray(EASTEROS_CARDS[i].id, EASTEROS_CARDS[i].region, "none", 1);
 				console.log(i);
 			}
+			mapDeck = EASTEROS_CARDS;
 			extraTroops = 35;
 	        break;
 	    default:
