@@ -1,4 +1,9 @@
 <html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</header>
+
 <style>
 #table {
   background-color: green;
@@ -35,10 +40,12 @@ var deck1 = HARD_CARDS;
 
 var INIT_X_POS = 10; // initial X position
 var INIT_Y_POS = 10; // initial Y position
+var HAND_INIT_Y = 96*4; // initial hand Y position
 var MOVE_TIME = 300;
 var DEAL_TIME = 50;
 
 var handCoordinates = [];
+var hand = []; // player's cards
 
 buildCoordinateArray(deck1);
 displayDeck(deck1, 'cards');
@@ -50,15 +57,12 @@ function generalFunction() {
 
 }
 
+// builds coordinate array for player's card positions
 function buildCoordinateArray(deck) {
 	
-	var i;
-	var offset = 50 // x position separation value
-	
-	for (i = 0; i < deck.length; i++)
-	{
-		handCoordinates.push( [(50), (200)] ); // push next card position coordinate to array
-		offset += 50;
+	for(var c = 0; c < deck.length; c++) {
+		var coordinates = [Math.floor(c*14), HAND_INIT_Y];
+		handCoordinates.push(coordinates);
 	}
 	
 }
@@ -91,23 +95,6 @@ function displayDeck(deck, id) {
 	});
 }
 
-function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
-  var cardDistributerCounter = 0;
-  console.log(cardArray[1].id);
-  var cardDistributerInterval = setInterval(function() {
-    moveCardOverTime(cardArray[cardDistributerCounter],
-      0,
-      0,
-      moveTime);
-
-
-    cardDistributerCounter++;
-    if(cardDistributerCounter === cardArray.length) {
-      clearInterval(cardDistributerInterval);
-    }
-  }, intervalTime);
-}
-
 function moveCardOnClick() {
 	document.getElementById("table").addEventListener("click", function(e){
 		var xPosition = e.clientX;
@@ -127,12 +114,15 @@ function moveCardOnClick() {
 		yPosition -= tableMarginTop;
 		*/
 		var card = document.getElementById("cards");
+
 		//card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
 		//card.classList.toggle('move');  
 		moveCardOverTime(card, xPosition, yPosition, MOVE_TIME);
+
 	});
 }
 
+/*
 // for testing purposes (displays cards and attributes)
 function testDeck() {
 			
@@ -157,6 +147,7 @@ function testDeck() {
 	i++;
 			
 }
+*/
 
 </script>
 </body>
