@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
 </header>
 
 <style>
@@ -93,23 +93,6 @@ function displayDeck(deck, id) {
 		}
 		count++;
 	});
-}
-
-function dealDeck(cardArray, coordinatesArray, moveTime, intervalTime) {
-  var cardDistributerCounter = 0;
-  console.log(cardArray[1].id);
-  var cardDistributerInterval = setInterval(function() {
-    moveCardOverTime(cardArray[cardDistributerCounter],
-      0,
-      0,
-      moveTime);
-
-
-    cardDistributerCounter++;
-    if(cardDistributerCounter === cardArray.length) {
-      clearInterval(cardDistributerInterval);
-    }
-  }, intervalTime);
 }
 
 function moveCardOnClick() {
