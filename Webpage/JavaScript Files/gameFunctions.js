@@ -14,7 +14,7 @@ var mapSelect = JSON.parse(localStorage.getItem('mapSelect'));
 
 
 /* CARD VARIABLES */
-var mapDeck; // deck for the chosen map
+var mapDeck = HARD_CARDS; // deck for the chosen map
 var INIT_X_POS = 10; // initial X position
 var INIT_Y_POS = 10; // initial Y position
 var HAND_INIT_Y = 96*4; // initial hand Y position
@@ -447,4 +447,91 @@ function updateSidebar() {
 	div.innerHTML = sidebarDiv;
 }
 
+
+
+
+/*=========================== CARD TRANSLATION FUNCTIONS ==============================*/
+
+
+function loadDeck() {
+	//shuffleDeck(mapDeck);
+	buildCoordinateArray(mapDeck);
+	displayDeck(mapDeck, 'cards');
+	console.log(mapDeck[1].id);
+	dealDeck(mapDeck, handCoordinates, MOVE_TIME, DEAL_TIME);
+}
+
+function generalFunction() {
+
+}
+
+// divides cards evenly amongst all players
+function divideCards(deck, number_of_players) {
+	
+}
+
+// builds coordinate array for player's card positions
+function buildCoordinateArray(deck) {
+	
+	for(var c = 0; c < deck.length; c++) {
+		var coordinates = [Math.floor(c*14), HAND_INIT_Y];
+		handCoordinates.push(coordinates);
+	}
+	
+}
+
+
+function displayDeck(deck, id) {
+	var div = document.getElementById(id);
+	var i;
+	var xPosition = 0;
+	var yPosition = 0;
+	var count = 0;
+	deck.forEach(function(e) {
+		console.log("e.id: " + e.id);
+		var currentCard = '<div id="'+e.id+'" class="moveContainer">';
+		currentCard += '  <div class="flipContainer">';
+		currentCard += '    <div class="cardContainer">';
+		currentCard += '      <div class="cardFront"><img src="../images/Cards/'+e.map+'/'+e.id+'.png" width="50"/></div>';
+		currentCard += '      <div class="cardBack"><img src="../images/Cards/back.png" width="50"/></div>';
+		currentCard += '    </div>';
+		currentCard += '  </div>';
+		currentCard += '</div>';
+
+		if (count == 0) {
+			div.innerHTML = currentCard;
+		}
+		else {
+			div.innerHTML = div.innerHTML + currentCard;
+		}
+		count++;
+	});
+}
+
+function moveCardOnClick() {
+	document.getElementById("table").addEventListener("click", function(e){
+		var xPosition = e.clientX;
+		var yPosition = e.clientY;
+
+		console.log(e.clientX);
+		console.log(xPosition);
+		
+		/* Does not work in Firefox */
+		/*
+		var table = document.getElementById("table");
+		var tableMarginLeft = table.currentStyle || window.getComputedStyle(table).marginLeft;
+		var tableMarginTop =  table.currentStyle || window.getComputedStyle(table).marginTop;
+		tableMarginLeft = parseInt(tableMarginLeft);
+		tableMarginTop = parseInt(tableMarginTop);
+		xPosition -= tableMarginLeft;
+		yPosition -= tableMarginTop;
+		*/
+		var card = document.getElementById("cards");
+
+		//card.style.transform = "translate("+xPosition+"px,"+yPosition+"px)";
+		//card.classList.toggle('move');  
+		moveCardOverTime(card, xPosition, yPosition, MOVE_TIME);
+
+	});
+}
 
